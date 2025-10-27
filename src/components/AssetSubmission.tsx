@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Home, Palette, Gem, Car, FileText, CheckCircle2 } from "lucide-react";
+import { Upload, Home, Palette, Gem, Car, FileText, CheckCircle2, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 type AssetType = "real-estate" | "art" | "jewelry" | "vehicle" | "other";
@@ -23,17 +23,19 @@ const assetTypes = [
 
 export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProps) {
   const [selectedType, setSelectedType] = useState<AssetType | null>(null);
+  const [showDetails, setShowDetails] = useState(false);
   const [assetName, setAssetName] = useState("");
   const [assetDescription, setAssetDescription] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const { toast } = useToast();
-  const detailsRef = useRef<HTMLDivElement>(null);
 
   const handleTypeSelect = (type: AssetType) => {
     setSelectedType(type);
-    setTimeout(() => {
-      detailsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
+    setShowDetails(true);
+  };
+
+  const handleBack = () => {
+    setShowDetails(false);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -81,46 +83,23 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
     }, 1500);
   };
 
-  return (
-    <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold text-foreground mb-2">選擇資產類型</h2>
-        <p className="text-muted-foreground">請選擇您要代幣化的資產類別</p>
-      </div>
+  if (showDetails && selectedType) {
+    return (
+      <div className="space-y-8">
+        <div className="flex items-center gap-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleBack}
+            className="hover:bg-accent"
+          >
+            <ArrowLeft className="w-5 h-5" />
+          </Button>
+          <h2 className="text-2xl font-bold text-foreground">資產詳細資訊</h2>
+        </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {assetTypes.map((type) => {
-          const Icon = type.icon;
-          return (
-            <Card
-              key={type.id}
-              className={`cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
-                selectedType === type.id
-                  ? "ring-2 ring-primary shadow-2xl scale-105 bg-primary/5"
-                  : "hover:bg-accent/30"
-              }`}
-              onClick={() => handleTypeSelect(type.id as AssetType)}
-            >
-              <div className="p-8 flex flex-col items-center text-center space-y-5">
-              <div className={`${type.color} p-6 rounded-full shadow-lg transition-transform hover:scale-110 relative`}>
-                  <div className="absolute inset-0 bg-white/10 rounded-full blur-sm"></div>
-                  <Icon className="w-10 h-10 text-white relative z-10" strokeWidth={2.5} />
-                </div>
-                <h3 className="font-semibold text-lg">{type.name}</h3>
-                {selectedType === type.id && (
-                  <CheckCircle2 className="w-6 h-6 text-primary" />
-                )}
-              </div>
-            </Card>
-          );
-        })}
-      </div>
-
-      {selectedType && (
-        <Card ref={detailsRef} className="p-6 space-y-6 scroll-mt-24">
+        <Card className="p-6 space-y-6">
           <div>
-            <h3 className="text-xl font-bold mb-4">資產詳細資訊</h3>
-            
             <div className="mb-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
               <p className="text-sm font-medium text-primary">
                 您選擇了「{assetTypes.find(t => t.id === selectedType)?.name}」類別
@@ -208,7 +187,37 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
             提交審核
           </Button>
         </Card>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-bold text-foreground mb-2">選擇資產類型</h2>
+        <p className="text-muted-foreground">請選擇您要代幣化的資產類別</p>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {assetTypes.map((type) => {
+          const Icon = type.icon;
+          return (
+            <Card
+              key={type.id}
+              className="cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-accent/30"
+              onClick={() => handleTypeSelect(type.id as AssetType)}
+            >
+              <div className="p-8 flex flex-col items-center text-center space-y-5">
+              <div className={`${type.color} p-6 rounded-full shadow-lg transition-transform hover:scale-110 relative`}>
+                  <div className="absolute inset-0 bg-white/10 rounded-full blur-sm"></div>
+                  <Icon className="w-10 h-10 text-white relative z-10" strokeWidth={2.5} />
+                </div>
+                <h3 className="font-semibold text-lg">{type.name}</h3>
+              </div>
+            </Card>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -26,7 +26,6 @@ const Index = () => {
             </div>
             <div>
               <h1 className="text-xl font-bold">ONE-B</h1>
-              <p className="text-xs text-muted-foreground">U6TJ6</p>
             </div>
           </div>
         </div>

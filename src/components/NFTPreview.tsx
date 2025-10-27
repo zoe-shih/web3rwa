@@ -44,15 +44,15 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-full overflow-x-hidden">
       <div>
         <h2 className="text-2xl font-bold text-foreground mb-2">NFT 預覽</h2>
         <p className="text-muted-foreground">確認您的資產 NFT 資訊</p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-6">
-        <Card className="p-4 sm:p-6 space-y-4">
-          <div className="aspect-square bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-xl flex items-center justify-center">
+      <div className="grid lg:grid-cols-2 gap-6 w-full">
+        <Card className="p-4 sm:p-6 space-y-4 overflow-hidden">
+          <div className="w-full aspect-square bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-xl flex items-center justify-center">
             <div className="text-center space-y-4">
               <div className="w-24 h-24 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
                 <Home className="w-12 h-12 text-primary" />
@@ -80,7 +80,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </Card>
 
         <div className="space-y-4">
-          <Card className="p-4 sm:p-6">
+          <Card className="p-4 sm:p-6 overflow-hidden">
             <h3 className="font-semibold text-lg mb-4">資產詳細資訊</h3>
             
             <div className="space-y-4">
@@ -110,7 +110,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
             </div>
           </Card>
 
-          <Card className="p-4 sm:p-6">
+          <Card className="p-4 sm:p-6 overflow-hidden">
             <h3 className="font-semibold text-lg mb-4">區塊鏈資訊</h3>
             
             <div className="space-y-4">
@@ -147,7 +147,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </div>
       </div>
 
-      <Card className="p-4 sm:p-6 bg-primary/5 border-primary/20">
+      <Card className="p-4 sm:p-6 bg-primary/5 border-primary/20 overflow-hidden">
         <div className="flex gap-3 sm:gap-4">
           <div className="p-3 bg-primary/10 rounded-full h-fit flex-shrink-0">
             <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />

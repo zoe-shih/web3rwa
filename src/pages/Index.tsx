@@ -33,7 +33,7 @@ const Index = () => {
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center gap-3">
             <Avatar className="w-10 h-10">
-              <AvatarFallback className="bg-success/20 text-success text-sm font-semibold">
+              <AvatarFallback className="bg-[#d4ff00] text-foreground text-sm font-semibold">
                 {userName.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>

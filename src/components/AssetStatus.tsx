@@ -115,7 +115,7 @@ export default function AssetStatus({ onViewNFT }: AssetStatusProps) {
                       {getStatusIcon(step.status, Icon)}
                     </div>
                     {!isLast && (
-                      <div className={`w-0.5 h-6 mt-2 ${
+                      <div className={`w-0.5 h-4 mt-2 ${
                         step.status === "completed" 
                           ? "bg-success" 
                           : "bg-border"
@@ -123,7 +123,7 @@ export default function AssetStatus({ onViewNFT }: AssetStatusProps) {
                     )}
                   </div>
                   
-                  <div className="flex-1 pb-2">
+                  <div className="flex-1 pb-1">
                     <div className="flex items-center gap-2 mb-1">
                       <h4 className="font-semibold">{step.name}</h4>
                       {getStatusBadge(step.status)}

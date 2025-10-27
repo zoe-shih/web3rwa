@@ -4,12 +4,13 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, Home, Palette, Gem, FileText, CheckCircle2, ArrowLeft } from "lucide-react";
+import { Upload, CheckCircle2, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import jewelryRing from "@/assets/jewelry-ring.png";
 import realEstateBuilding from "@/assets/real-estate-building.png";
 import artPainting from "@/assets/art-painting.png";
 import carVehicle from "@/assets/car-vehicle.png";
+import wineBottle from "@/assets/wine-bottle.png";
 
 type AssetType = "real-estate" | "art" | "jewelry" | "vehicle" | "other";
 
@@ -22,7 +23,7 @@ const assetTypes = [
   { id: "art", name: "藝術品", image: artPainting, color: "bg-gradient-to-br from-purple-500 to-purple-600" },
   { id: "jewelry", name: "珠寶首飾", image: jewelryRing, color: "bg-gradient-to-br from-pink-500 to-pink-600" },
   { id: "vehicle", name: "車輛", image: carVehicle, color: "bg-gradient-to-br from-green-500 to-green-600" },
-  { id: "other", name: "其他資產", icon: FileText, color: "bg-gradient-to-br from-orange-500 to-orange-600" },
+  { id: "other", name: "其他資產", image: wineBottle, color: "bg-gradient-to-br from-orange-500 to-orange-600" },
 ];
 
 export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProps) {
@@ -204,7 +205,6 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {assetTypes.map((type) => {
-          const Icon = type.icon;
           return (
             <Card
               key={type.id}
@@ -213,11 +213,7 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
             >
               <div className="p-4 sm:p-6 md:p-8 flex flex-col items-center text-center space-y-3 sm:space-y-4">
               <div className="transition-transform hover:scale-110 relative">
-                  {type.image ? (
-                    <img src={type.image} alt={type.name} className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 relative z-10 object-contain" />
-                  ) : (
-                    <Icon className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-primary relative z-10" strokeWidth={1.5} />
-                  )}
+                  <img src={type.image} alt={type.name} className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 relative z-10 object-contain" />
                 </div>
                 <h3 className="font-semibold text-base sm:text-lg">{type.name}</h3>
               </div>

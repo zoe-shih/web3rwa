@@ -8,7 +8,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Canvas as FabricCanvas, Text } from "fabric";
+import { Canvas as FabricCanvas, Textbox } from "fabric";
 import { RotateCcw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -85,9 +85,19 @@ export default function DigitalSignatureDialog({
 
   const handleAutoSign = () => {
     const canvas = fabricCanvasRef.current;
-    if (!canvas) return;
+    // 先標記為已簽名，讓「確認簽名」可點
+    setHasSigned(true);
 
-    const signature = new Text("吳育辰", {
+    if (!canvas) {
+      toast({
+        title: "已填入簽名",
+        description: "您可以直接按「確認簽名」",
+      });
+      return;
+    }
+
+    const signature = new Textbox("吳育辰");
+    signature.set({
       left: 40,
       top: 100,
       fontSize: 48,
@@ -99,7 +109,6 @@ export default function DigitalSignatureDialog({
 
     canvas.add(signature);
     canvas.renderAll();
-    setHasSigned(true);
 
     toast({
       title: "已填入簽名",

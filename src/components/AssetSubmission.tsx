@@ -209,12 +209,11 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
               onClick={() => handleTypeSelect(type.id as AssetType)}
             >
               <div className="p-8 flex flex-col items-center text-center space-y-5">
-              <div className={`${type.image ? 'p-0' : type.color + ' p-6 rounded-full shadow-lg'} transition-transform hover:scale-110 relative`}>
-                  {!type.image && <div className="absolute inset-0 bg-white/10 rounded-full blur-sm"></div>}
+              <div className="transition-transform hover:scale-110 relative">
                   {type.image ? (
                     <img src={type.image} alt={type.name} className="w-24 h-24 relative z-10 object-contain" />
                   ) : (
-                    <Icon className="w-10 h-10 text-white relative z-10" strokeWidth={2.5} />
+                    <Icon className="w-24 h-24 text-primary relative z-10" strokeWidth={1.5} />
                   )}
                 </div>
                 <h3 className="font-semibold text-lg">{type.name}</h3>

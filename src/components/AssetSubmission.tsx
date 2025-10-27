@@ -121,6 +121,12 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
           <div>
             <h3 className="text-xl font-bold mb-4">資產詳細資訊</h3>
             
+            <div className="mb-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+              <p className="text-sm font-medium text-primary">
+                您選擇了「{assetTypes.find(t => t.id === selectedType)?.name}」類別
+              </p>
+            </div>
+            
             <div className="space-y-4">
               <div>
                 <Label htmlFor="asset-name">資產名稱 *</Label>

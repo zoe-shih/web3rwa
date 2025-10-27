@@ -8,7 +8,7 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Canvas as FabricCanvas } from "fabric";
+import { Canvas as FabricCanvas, Text } from "fabric";
 import { RotateCcw } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -83,6 +83,30 @@ export default function DigitalSignatureDialog({
     });
   };
 
+  const handleAutoSign = () => {
+    const canvas = fabricCanvasRef.current;
+    if (!canvas) return;
+
+    const signature = new Text("吳育辰", {
+      left: 40,
+      top: 100,
+      fontSize: 48,
+      fontFamily: "serif",
+      fill: "#000000",
+      selectable: false,
+      evented: false,
+    });
+
+    canvas.add(signature);
+    canvas.renderAll();
+    setHasSigned(true);
+
+    toast({
+      title: "已填入簽名",
+      description: "您可以直接按「確認簽名」",
+    });
+  };
+
   const handleConfirm = () => {
     if (!hasSigned) {
       toast({
@@ -116,14 +140,23 @@ export default function DigitalSignatureDialog({
             <p className="text-sm text-muted-foreground">
               使用滑鼠或觸控筆在下方區域簽名
             </p>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleClear}
-            >
-              <RotateCcw className="w-4 h-4 mr-2" />
-              清除
-            </Button>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={handleAutoSign}
+              >
+                自動簽名
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleClear}
+              >
+                <RotateCcw className="w-4 h-4 mr-2" />
+                清除
+              </Button>
+            </div>
           </div>
           
           <div 

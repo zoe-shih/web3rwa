@@ -132,13 +132,32 @@ export default function AssetStatus({ onViewNFT }: AssetStatusProps) {
                       {step.description}
                     </p>
                     {step.estimatedValue && step.status === "in-progress" && (
-                      <div className="mt-3 p-4 bg-primary/5 border border-primary/20 rounded-lg">
-                        <p className="text-sm font-medium text-primary mb-1">
-                          預估資產價值
-                        </p>
-                        <p className="text-2xl font-bold text-primary">
-                          {step.estimatedValue}
-                        </p>
+                      <div className="mt-3 p-4 bg-primary/5 border border-primary/20 rounded-lg space-y-3">
+                        <div>
+                          <p className="text-sm font-medium text-primary mb-1">
+                            預估資產價值
+                          </p>
+                          <p className="text-2xl font-bold text-primary">
+                            {step.estimatedValue}
+                          </p>
+                        </div>
+                        <div className="flex gap-2 pt-2">
+                          <Button 
+                            size="sm" 
+                            className="flex-1"
+                            onClick={() => console.log('接受估值')}
+                          >
+                            接受
+                          </Button>
+                          <Button 
+                            size="sm" 
+                            variant="outline" 
+                            className="flex-1"
+                            onClick={() => console.log('拒絕估值')}
+                          >
+                            拒絕
+                          </Button>
+                        </div>
                       </div>
                     )}
                   </div>

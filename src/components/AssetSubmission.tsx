@@ -208,7 +208,7 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
           return (
             <Card
               key={type.id}
-              className="cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-accent/30 border-0"
+              className="cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 border-0"
               onClick={() => handleTypeSelect(type.id as AssetType)}
             >
               <div className="p-4 sm:p-6 md:p-8 flex flex-col items-center text-center space-y-3 sm:space-y-4">

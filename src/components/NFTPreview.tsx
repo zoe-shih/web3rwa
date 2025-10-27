@@ -51,7 +51,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
-        <Card className="p-6 space-y-4">
+        <Card className="p-4 sm:p-6 space-y-4">
           <div className="aspect-square bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-xl flex items-center justify-center">
             <div className="text-center space-y-4">
               <div className="w-24 h-24 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
@@ -65,7 +65,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-bold text-xl">{nftData.name}</h3>
+            <h3 className="font-bold text-xl break-words">{nftData.name}</h3>
             <Badge className="bg-primary">{nftData.assetType}</Badge>
           </div>
 
@@ -80,15 +80,15 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </Card>
 
         <div className="space-y-4">
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <h3 className="font-semibold text-lg mb-4">資產詳細資訊</h3>
             
             <div className="space-y-4">
               <div className="flex gap-3">
                 <MapPin className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-sm text-muted-foreground">地址</p>
-                  <p className="font-medium">{nftData.location}</p>
+                  <p className="font-medium break-words">{nftData.location}</p>
                 </div>
               </div>
 
@@ -110,14 +110,14 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
             </div>
           </Card>
 
-          <Card className="p-6">
+          <Card className="p-4 sm:p-6">
             <h3 className="font-semibold text-lg mb-4">區塊鏈資訊</h3>
             
             <div className="space-y-4">
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-muted-foreground mb-2">智能合約地址</p>
                 <div className="flex items-center gap-2">
-                  <code className="flex-1 text-xs bg-secondary p-3 rounded-lg font-mono truncate">
+                  <code className="flex-1 min-w-0 text-xs bg-secondary p-3 rounded-lg font-mono truncate">
                     {nftData.contractHash}
                   </code>
                   <Button
@@ -147,12 +147,12 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </div>
       </div>
 
-      <Card className="p-6 bg-primary/5 border-primary/20">
-        <div className="flex gap-4">
-          <div className="p-3 bg-primary/10 rounded-full h-fit">
-            <FileText className="w-6 h-6 text-primary" />
+      <Card className="p-4 sm:p-6 bg-primary/5 border-primary/20">
+        <div className="flex gap-3 sm:gap-4">
+          <div className="p-3 bg-primary/10 rounded-full h-fit flex-shrink-0">
+            <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
           </div>
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <h4 className="font-semibold mb-2">NFT Metadata</h4>
             <p className="text-sm text-muted-foreground mb-3">
               此 NFT 包含完整的資產資訊、估值數據以及法律文件的鏈下連結，確保資產的真實性和可追溯性。
@@ -166,7 +166,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </div>
       </Card>
 
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <Button 
           variant="outline" 
           size="lg"

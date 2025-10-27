@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import DigitalSigningDialog from "./DigitalSigningDialog";
 
 interface NFTPreviewProps {
   onConfirm: () => void;
@@ -20,6 +21,7 @@ interface NFTPreviewProps {
 
 export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
   const [copied, setCopied] = useState(false);
+  const [showSigningDialog, setShowSigningDialog] = useState(false);
   const { toast } = useToast();
 
   const nftData = {
@@ -178,11 +180,20 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         <Button 
           size="lg"
           className="flex-1"
-          onClick={onConfirm}
+          onClick={() => setShowSigningDialog(true)}
         >
-          確認並鑄造 NFT
+          接受
         </Button>
       </div>
+
+      <DigitalSigningDialog
+        open={showSigningDialog}
+        onOpenChange={setShowSigningDialog}
+        onConfirm={() => {
+          setShowSigningDialog(false);
+          onConfirm();
+        }}
+      />
     </div>
   );
 }

@@ -76,8 +76,10 @@ export default function AssetStatus({ onViewNFT }: AssetStatusProps) {
     setShowSignatureDialog(false);
     toast({
       title: "簽約完成",
-      description: "您的資產將繼續進行 NFT 鑄造流程",
+      description: "接下來將進行實體託管流程",
     });
+    // 進入託管流程
+    onViewNFT();
   };
 
   const getStatusBadge = (status: string) => {

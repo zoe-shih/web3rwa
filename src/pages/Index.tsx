@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AssetSubmission from "@/components/AssetSubmission";
 import AssetStatus from "@/components/AssetStatus";
+import CustodyProcess from "@/pages/CustodyProcess";
 import NFTPreview from "@/components/NFTPreview";
 import NFTSuccess from "@/components/NFTSuccess";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -67,9 +68,12 @@ const Index = () => {
             <AssetStatus onViewNFT={() => handleStepChange(2)} />
           )}
           {currentStep === 2 && (
-            <NFTPreview onConfirm={() => handleStepChange(3)} />
+            <CustodyProcess onComplete={() => handleStepChange(3)} />
           )}
-          {currentStep === 3 && <NFTSuccess />}
+          {currentStep === 3 && (
+            <NFTPreview onConfirm={() => handleStepChange(4)} />
+          )}
+          {currentStep === 4 && <NFTSuccess />}
         </div>
       </main>
 

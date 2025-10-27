@@ -8,7 +8,6 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 
 interface ContractReviewDialogProps {
@@ -23,7 +22,7 @@ export default function ContractReviewDialog({
   onConfirm,
 }: ContractReviewDialogProps) {
   const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -32,10 +31,11 @@ export default function ContractReviewDialog({
     }
   }, [open]);
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    const target = event.currentTarget;
-    const scrolledToBottom =
-      target.scrollHeight - target.scrollTop <= target.clientHeight + 10;
+  const handleScroll = () => {
+    if (!scrollContainerRef.current) return;
+    
+    const { scrollTop, scrollHeight, clientHeight } = scrollContainerRef.current;
+    const scrolledToBottom = scrollHeight - scrollTop <= clientHeight + 10;
     
     if (scrolledToBottom && !hasScrolledToBottom) {
       setHasScrolledToBottom(true);
@@ -68,11 +68,13 @@ export default function ContractReviewDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <ScrollArea 
-          className="flex-1 pr-4"
-          onScroll={handleScroll}
-        >
-          <div className="space-y-4 text-sm text-muted-foreground">
+        <div className="flex-1 overflow-hidden">
+          <div 
+            ref={scrollContainerRef}
+            onScroll={handleScroll}
+            className="h-[400px] overflow-y-auto pr-4"
+          >
+            <div className="space-y-4 text-sm text-muted-foreground">
             <section>
               <h4 className="font-semibold text-foreground mb-2">第一條：合約目的</h4>
               <p>
@@ -178,8 +180,9 @@ export default function ContractReviewDialog({
                 請確認您已完整閱讀並理解以上所有條款
               </p>
             </section>
+            </div>
           </div>
-        </ScrollArea>
+        </div>
 
         <DialogFooter className="flex-col sm:flex-row gap-2 sm:gap-0">
           <Button

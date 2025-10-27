@@ -14,11 +14,11 @@ interface AssetSubmissionProps {
 }
 
 const assetTypes = [
-  { id: "real-estate", name: "房地產", icon: Home, color: "bg-blue-500" },
-  { id: "art", name: "藝術品", icon: Palette, color: "bg-purple-500" },
-  { id: "jewelry", name: "珠寶首飾", icon: Gem, color: "bg-pink-500" },
-  { id: "vehicle", name: "車輛", icon: Car, color: "bg-green-500" },
-  { id: "other", name: "其他資產", icon: FileText, color: "bg-orange-500" },
+  { id: "real-estate", name: "房地產", icon: Home, color: "bg-gradient-to-br from-blue-500 to-blue-600" },
+  { id: "art", name: "藝術品", icon: Palette, color: "bg-gradient-to-br from-purple-500 to-purple-600" },
+  { id: "jewelry", name: "珠寶首飾", icon: Gem, color: "bg-gradient-to-br from-pink-500 to-pink-600" },
+  { id: "vehicle", name: "車輛", icon: Car, color: "bg-gradient-to-br from-green-500 to-green-600" },
+  { id: "other", name: "其他資產", icon: FileText, color: "bg-gradient-to-br from-orange-500 to-orange-600" },
 ];
 
 export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProps) {
@@ -86,16 +86,17 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
           return (
             <Card
               key={type.id}
-              className={`cursor-pointer transition-all hover:shadow-lg ${
+              className={`cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 ${
                 selectedType === type.id
-                  ? "ring-2 ring-primary shadow-lg"
-                  : ""
+                  ? "ring-2 ring-primary shadow-2xl scale-105 bg-primary/5"
+                  : "hover:bg-accent/30"
               }`}
               onClick={() => setSelectedType(type.id as AssetType)}
             >
-              <div className="p-6 flex flex-col items-center text-center space-y-4">
-                <div className={`${type.color} p-4 rounded-full`}>
-                  <Icon className="w-8 h-8 text-white" />
+              <div className="p-8 flex flex-col items-center text-center space-y-5">
+              <div className={`${type.color} p-6 rounded-full shadow-lg transition-transform hover:scale-110 relative`}>
+                  <div className="absolute inset-0 bg-white/10 rounded-full blur-sm"></div>
+                  <Icon className="w-10 h-10 text-white relative z-10" strokeWidth={2.5} />
                 </div>
                 <h3 className="font-semibold text-lg">{type.name}</h3>
                 {selectedType === type.id && (

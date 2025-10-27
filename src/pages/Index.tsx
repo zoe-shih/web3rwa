@@ -1,12 +1,9 @@
 import { useState } from "react";
-import Stepper from "@/components/Stepper";
 import AssetSubmission from "@/components/AssetSubmission";
 import AssetStatus from "@/components/AssetStatus";
 import NFTPreview from "@/components/NFTPreview";
 import NFTSuccess from "@/components/NFTSuccess";
 import { Coins } from "lucide-react";
-
-const steps = ["提交資產", "審核中", "預覽 NFT", "鑄造完成"];
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -32,9 +29,7 @@ const Index = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <Stepper steps={steps} currentStep={currentStep} />
-
-        <div className="max-w-5xl mx-auto mt-8">
+        <div className="max-w-5xl mx-auto">
           {currentStep === 0 && (
             <AssetSubmission onSubmitSuccess={() => handleStepChange(1)} />
           )}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,6 +27,14 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
   const [assetDescription, setAssetDescription] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const { toast } = useToast();
+  const detailsRef = useRef<HTMLDivElement>(null);
+
+  const handleTypeSelect = (type: AssetType) => {
+    setSelectedType(type);
+    setTimeout(() => {
+      detailsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -91,7 +99,7 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
                   ? "ring-2 ring-primary shadow-2xl scale-105 bg-primary/5"
                   : "hover:bg-accent/30"
               }`}
-              onClick={() => setSelectedType(type.id as AssetType)}
+              onClick={() => handleTypeSelect(type.id as AssetType)}
             >
               <div className="p-8 flex flex-col items-center text-center space-y-5">
               <div className={`${type.color} p-6 rounded-full shadow-lg transition-transform hover:scale-110 relative`}>
@@ -109,7 +117,7 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
       </div>
 
       {selectedType && (
-        <Card className="p-6 space-y-6">
+        <Card ref={detailsRef} className="p-6 space-y-6 scroll-mt-24">
           <div>
             <h3 className="text-xl font-bold mb-4">資產詳細資訊</h3>
             

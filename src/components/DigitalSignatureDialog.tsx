@@ -27,6 +27,7 @@ export default function DigitalSignatureDialog({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const fabricCanvasRef = useRef<FabricCanvas | null>(null);
+  const isDrawingRef = useRef(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -43,12 +44,24 @@ export default function DigitalSignatureDialog({
       isDrawingMode: true,
     });
 
+    // Enable drawing brush
     canvas.freeDrawingBrush.color = "#000000";
     canvas.freeDrawingBrush.width = 2;
 
-    canvas.on("path:created", () => {
-      setHasSigned(true);
+    // Ensure touch works and cursor shows drawing intent
+    canvas.upperCanvasEl.style.touchAction = "none";
+    canvas.upperCanvasEl.style.cursor = "crosshair";
+
+    // Mark as signed when a path is created or drawing completes
+    canvas.on("path:created", () => setHasSigned(true));
+    canvas.on("mouse:down", () => {
+      isDrawingRef.current = true;
     });
+    canvas.on("mouse:up", () => {
+      if (isDrawingRef.current) setHasSigned(true);
+      isDrawingRef.current = false;
+    });
+    canvas.on("object:added", () => setHasSigned(true));
 
     fabricCanvasRef.current = canvas;
 

@@ -11,7 +11,8 @@ import {
   Eye
 } from "lucide-react";
 import { useState } from "react";
-import DigitalSigningDialog from "./DigitalSigningDialog";
+import ContractReviewDialog from "./ContractReviewDialog";
+import DigitalSignatureDialog from "./DigitalSignatureDialog";
 import { useToast } from "@/hooks/use-toast";
 
 interface AssetStatusProps {
@@ -58,15 +59,21 @@ const statusSteps = [
 ];
 
 export default function AssetStatus({ onViewNFT }: AssetStatusProps) {
-  const [showSigningDialog, setShowSigningDialog] = useState(false);
+  const [showContractDialog, setShowContractDialog] = useState(false);
+  const [showSignatureDialog, setShowSignatureDialog] = useState(false);
   const { toast } = useToast();
 
   const handleAcceptValuation = () => {
-    setShowSigningDialog(true);
+    setShowContractDialog(true);
+  };
+
+  const handleContractConfirm = () => {
+    setShowContractDialog(false);
+    setShowSignatureDialog(true);
   };
 
   const handleSigningComplete = () => {
-    setShowSigningDialog(false);
+    setShowSignatureDialog(false);
     toast({
       title: "簽約完成",
       description: "您的資產將繼續進行 NFT 鑄造流程",
@@ -210,9 +217,15 @@ export default function AssetStatus({ onViewNFT }: AssetStatusProps) {
         預覽 NFT 資訊
       </Button>
 
-      <DigitalSigningDialog
-        open={showSigningDialog}
-        onOpenChange={setShowSigningDialog}
+      <ContractReviewDialog
+        open={showContractDialog}
+        onOpenChange={setShowContractDialog}
+        onConfirm={handleContractConfirm}
+      />
+
+      <DigitalSignatureDialog
+        open={showSignatureDialog}
+        onOpenChange={setShowSignatureDialog}
         onConfirm={handleSigningComplete}
       />
     </div>

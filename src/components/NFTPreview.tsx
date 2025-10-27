@@ -13,7 +13,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import DigitalSigningDialog from "./DigitalSigningDialog";
+import ContractReviewDialog from "./ContractReviewDialog";
+import DigitalSignatureDialog from "./DigitalSignatureDialog";
 
 interface NFTPreviewProps {
   onConfirm: () => void;
@@ -21,8 +22,19 @@ interface NFTPreviewProps {
 
 export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
   const [copied, setCopied] = useState(false);
-  const [showSigningDialog, setShowSigningDialog] = useState(false);
+  const [showContractDialog, setShowContractDialog] = useState(false);
+  const [showSignatureDialog, setShowSignatureDialog] = useState(false);
   const { toast } = useToast();
+
+  const handleContractConfirm = () => {
+    setShowContractDialog(false);
+    setShowSignatureDialog(true);
+  };
+
+  const handleSigningComplete = () => {
+    setShowSignatureDialog(false);
+    onConfirm();
+  };
 
   const nftData = {
     tokenId: "#RWA-2025-001",
@@ -180,19 +192,22 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         <Button 
           size="lg"
           className="flex-1"
-          onClick={() => setShowSigningDialog(true)}
+          onClick={() => setShowContractDialog(true)}
         >
           接受
         </Button>
       </div>
 
-      <DigitalSigningDialog
-        open={showSigningDialog}
-        onOpenChange={setShowSigningDialog}
-        onConfirm={() => {
-          setShowSigningDialog(false);
-          onConfirm();
-        }}
+      <ContractReviewDialog
+        open={showContractDialog}
+        onOpenChange={setShowContractDialog}
+        onConfirm={handleContractConfirm}
+      />
+
+      <DigitalSignatureDialog
+        open={showSignatureDialog}
+        onOpenChange={setShowSignatureDialog}
+        onConfirm={handleSigningComplete}
       />
     </div>
   );

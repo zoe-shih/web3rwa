@@ -25,7 +25,7 @@ const Index = () => {
               <Coins className="w-6 h-6 text-primary-foreground" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">RWA 資產代幣化平台</h1>
+              <h1 className="text-xl font-bold">ONE-B</h1>
               <p className="text-xs text-muted-foreground">Real World Assets Tokenization</p>
             </div>
           </div>

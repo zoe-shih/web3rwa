@@ -88,7 +88,7 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
               )}
               <Badge variant="secondary">步驟 4</Badge>
             </div>
-            <CardTitle className="text-3xl">下一步：完成實體資產程序</CardTitle>
+            <CardTitle className="text-3xl">下一步：完成實體資產託管程序</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="bg-muted/50 p-6 rounded-lg">

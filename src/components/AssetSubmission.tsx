@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Upload, Home, Palette, Gem, Car, FileText, CheckCircle2, ArrowLeft } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import jewelryRing from "@/assets/jewelry-ring.png";
 
 type AssetType = "real-estate" | "art" | "jewelry" | "vehicle" | "other";
 
@@ -15,7 +16,7 @@ interface AssetSubmissionProps {
 
 const assetTypes = [
   { id: "real-estate", name: "房地產", icon: Home, color: "bg-gradient-to-br from-blue-500 to-blue-600" },
-  { id: "art", name: "藝術品", icon: Palette, color: "bg-gradient-to-br from-purple-500 to-purple-600" },
+  { id: "art", name: "藝術品", image: jewelryRing, color: "bg-gradient-to-br from-purple-500 to-purple-600" },
   { id: "jewelry", name: "珠寶首飾", icon: Gem, color: "bg-gradient-to-br from-pink-500 to-pink-600" },
   { id: "vehicle", name: "車輛", icon: Car, color: "bg-gradient-to-br from-green-500 to-green-600" },
   { id: "other", name: "其他資產", icon: FileText, color: "bg-gradient-to-br from-orange-500 to-orange-600" },
@@ -210,7 +211,11 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
               <div className="p-8 flex flex-col items-center text-center space-y-5">
               <div className={`${type.color} p-6 rounded-full shadow-lg transition-transform hover:scale-110 relative`}>
                   <div className="absolute inset-0 bg-white/10 rounded-full blur-sm"></div>
-                  <Icon className="w-10 h-10 text-white relative z-10" strokeWidth={2.5} />
+                  {type.image ? (
+                    <img src={type.image} alt={type.name} className="w-10 h-10 relative z-10 object-contain" />
+                  ) : (
+                    <Icon className="w-10 h-10 text-white relative z-10" strokeWidth={2.5} />
+                  )}
                 </div>
                 <h3 className="font-semibold text-lg">{type.name}</h3>
               </div>

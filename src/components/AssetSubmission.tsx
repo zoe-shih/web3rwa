@@ -210,15 +210,15 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
               className="cursor-pointer transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:bg-accent/30 border-0"
               onClick={() => handleTypeSelect(type.id as AssetType)}
             >
-              <div className="p-8 flex flex-col items-center text-center space-y-5">
+              <div className="p-4 sm:p-6 md:p-8 flex flex-col items-center text-center space-y-3 sm:space-y-4">
               <div className="transition-transform hover:scale-110 relative">
                   {type.image ? (
-                    <img src={type.image} alt={type.name} className="w-24 h-24 relative z-10 object-contain" />
+                    <img src={type.image} alt={type.name} className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 relative z-10 object-contain" />
                   ) : (
-                    <Icon className="w-24 h-24 text-primary relative z-10" strokeWidth={1.5} />
+                    <Icon className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-primary relative z-10" strokeWidth={1.5} />
                   )}
                 </div>
-                <h3 className="font-semibold text-lg">{type.name}</h3>
+                <h3 className="font-semibold text-base sm:text-lg">{type.name}</h3>
               </div>
             </Card>
           );

@@ -25,15 +25,20 @@ export default function DigitalSignatureDialog({
 }: DigitalSignatureDialogProps) {
   const [hasSigned, setHasSigned] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const fabricCanvasRef = useRef<FabricCanvas | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
-    if (!canvasRef.current || !open) return;
+    if (!canvasRef.current || !containerRef.current || !open) return;
+
+    // Get container width for responsive canvas
+    const containerWidth = containerRef.current.offsetWidth;
+    const canvasHeight = 200;
 
     const canvas = new FabricCanvas(canvasRef.current, {
-      width: 500,
-      height: 200,
+      width: containerWidth,
+      height: canvasHeight,
       backgroundColor: "#ffffff",
       isDrawingMode: true,
     });
@@ -108,8 +113,11 @@ export default function DigitalSignatureDialog({
             </Button>
           </div>
           
-          <div className="border-2 border-dashed border-border rounded-lg overflow-hidden bg-white">
-            <canvas ref={canvasRef} className="w-full cursor-crosshair" />
+          <div 
+            ref={containerRef}
+            className="border-2 border-dashed border-border rounded-lg overflow-hidden bg-white"
+          >
+            <canvas ref={canvasRef} className="cursor-crosshair block" />
           </div>
 
           <div className="bg-muted/50 p-4 rounded-lg">

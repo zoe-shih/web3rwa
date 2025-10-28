@@ -7,8 +7,7 @@ import {
   FileCheck, 
   Coins, 
   FileSignature,
-  Loader2,
-  Eye
+  Loader2
 } from "lucide-react";
 import { useState } from "react";
 import ContractReviewDialog from "./ContractReviewDialog";
@@ -194,30 +193,6 @@ export default function AssetStatus({ onViewNFT }: AssetStatusProps) {
           })}
         </div>
       </Card>
-
-      <Card className="p-6 bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20">
-        <div className="flex items-start gap-4">
-          <div className="p-3 bg-primary/10 rounded-full">
-            <Clock className="w-6 h-6 text-primary" />
-          </div>
-          <div className="flex-1">
-            <h4 className="font-semibold mb-1">預計完成時間</h4>
-            <p className="text-sm text-muted-foreground">
-              您的資產預計在 2-3 個工作天內完成估值審核。我們會在每個階段完成時通知您。
-            </p>
-          </div>
-        </div>
-      </Card>
-
-      <Button 
-        onClick={onViewNFT}
-        variant="outline"
-        className="w-full"
-        size="lg"
-      >
-        <Eye className="w-4 h-4 mr-2" />
-        預覽 NFT 資訊
-      </Button>
 
       <ContractReviewDialog
         open={showContractDialog}

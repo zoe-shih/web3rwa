@@ -71,15 +71,25 @@ const Index = () => {
                 </button>
               </div>
             </div>
-            <Button 
-              onClick={() => navigate("/my-assets")}
-              size="sm"
-              variant="outline"
-              className="flex items-center gap-2"
-            >
-              <Wallet className="w-4 h-4" />
-              我的資產
-            </Button>
+            <div className="flex gap-2">
+              <Button 
+                onClick={() => navigate("/my-loans")}
+                size="sm"
+                variant="outline"
+                className="flex items-center gap-2"
+              >
+                我的貸款
+              </Button>
+              <Button 
+                onClick={() => navigate("/my-assets")}
+                size="sm"
+                variant="outline"
+                className="flex items-center gap-2"
+              >
+                <Wallet className="w-4 h-4" />
+                我的資產
+              </Button>
+            </div>
           </div>
         </div>
       </header>

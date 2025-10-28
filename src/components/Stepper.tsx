@@ -7,11 +7,11 @@ interface StepperProps {
 
 export default function Stepper({ steps, currentStep }: StepperProps) {
   return (
-    <div className="w-full py-8">
-      <div className="flex items-center justify-between max-w-3xl mx-auto">
+    <div className="w-full py-8 overflow-x-auto">
+      <div className="flex items-center max-w-3xl mx-auto px-4" style={{ minWidth: 'max-content' }}>
         {steps.map((step, index) => (
-          <div key={index} className="flex items-center flex-1">
-            <div className="flex flex-col items-center flex-1">
+          <div key={index} className="flex items-center" style={{ minWidth: '140px' }}>
+            <div className="flex flex-col items-center" style={{ width: '140px' }}>
               <div className="relative">
                 <div
                   className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all ${
@@ -30,7 +30,7 @@ export default function Stepper({ steps, currentStep }: StepperProps) {
                 </div>
               </div>
               <p
-                className={`text-xs sm:text-sm mt-2 text-center font-medium ${
+                className={`text-xs sm:text-sm mt-2 text-center font-medium whitespace-nowrap ${
                   index <= currentStep ? "text-foreground" : "text-muted-foreground"
                 }`}
               >
@@ -39,7 +39,7 @@ export default function Stepper({ steps, currentStep }: StepperProps) {
             </div>
             {index < steps.length - 1 && (
               <div
-                className={`h-0.5 flex-1 mx-2 transition-colors ${
+                className={`h-0.5 w-16 mx-2 transition-colors flex-shrink-0 ${
                   index < currentStep ? "bg-primary" : "bg-border"
                 }`}
               />

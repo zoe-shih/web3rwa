@@ -179,7 +179,17 @@ const KYCVerification = () => {
                   <Button
                     type="button"
                     className="w-full"
-                    onClick={() => setCurrentStep(2)}
+                    onClick={() => {
+                      if (!fullName || !idType || !idNumber || !birthDate) {
+                        toast({
+                          title: "請填寫所有必填欄位",
+                          description: "請確保所有基本資料都已填寫完整",
+                          variant: "destructive",
+                        });
+                        return;
+                      }
+                      setCurrentStep(2);
+                    }}
                   >
                     下一步
                   </Button>

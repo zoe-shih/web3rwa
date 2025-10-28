@@ -7,23 +7,18 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Shield, Upload, CheckCircle2, Loader2, Camera, FileText } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { useForm } from "react-hook-form";
-
-interface KYCFormData {
-  fullName: string;
-  idType: string;
-  idNumber: string;
-  birthDate: string;
-}
 
 const KYCVerification = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [idDocument, setIdDocument] = useState<File | null>(null);
   const [selfiePhoto, setSelfiePhoto] = useState<File | null>(null);
+  const [fullName, setFullName] = useState("");
+  const [idType, setIdType] = useState("");
+  const [idNumber, setIdNumber] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const navigate = useNavigate();
   const { toast } = useToast();
-  const { register, handleSubmit, formState: { errors } } = useForm<KYCFormData>();
 
   const handleFileUpload = (type: "id" | "selfie", file: File) => {
     if (type === "id") {
@@ -41,7 +36,19 @@ const KYCVerification = () => {
     }
   };
 
-  const onSubmit = async (data: KYCFormData) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // 驗證所有欄位
+    if (!fullName || !idType || !idNumber || !birthDate) {
+      toast({
+        title: "請填寫所有必填欄位",
+        description: "請確保所有基本資料都已填寫",
+        variant: "destructive",
+      });
+      return;
+    }
+
     if (!idDocument || !selfiePhoto) {
       toast({
         title: "請上傳所有必要文件",
@@ -58,7 +65,7 @@ const KYCVerification = () => {
       setIsSubmitting(false);
       toast({
         title: "KYC 驗證已提交",
-        description: "您的資料已送出審核，通常需要 1-2 個工作天",
+        description: "您的資料已送出審核，即將跳轉到資產類型選擇頁面",
       });
       
       // 驗證成功後跳轉到資產類型選擇頁面
@@ -118,7 +125,7 @@ const KYCVerification = () => {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={handleFormSubmit} className="space-y-6">
               {/* Step 1: Basic Information */}
               {currentStep === 1 && (
                 <div className="space-y-4">
@@ -127,16 +134,15 @@ const KYCVerification = () => {
                     <Input
                       id="fullName"
                       placeholder="請輸入您的真實姓名"
-                      {...register("fullName", { required: true })}
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      required
                     />
-                    {errors.fullName && (
-                      <p className="text-sm text-destructive">此欄位為必填</p>
-                    )}
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="idType">證件類型</Label>
-                    <Select {...register("idType", { required: true })}>
+                    <Select value={idType} onValueChange={setIdType} required>
                       <SelectTrigger>
                         <SelectValue placeholder="選擇證件類型" />
                       </SelectTrigger>
@@ -153,11 +159,10 @@ const KYCVerification = () => {
                     <Input
                       id="idNumber"
                       placeholder="請輸入證件號碼"
-                      {...register("idNumber", { required: true })}
+                      value={idNumber}
+                      onChange={(e) => setIdNumber(e.target.value)}
+                      required
                     />
-                    {errors.idNumber && (
-                      <p className="text-sm text-destructive">此欄位為必填</p>
-                    )}
                   </div>
 
                   <div className="space-y-2">
@@ -165,11 +170,10 @@ const KYCVerification = () => {
                     <Input
                       id="birthDate"
                       type="date"
-                      {...register("birthDate", { required: true })}
+                      value={birthDate}
+                      onChange={(e) => setBirthDate(e.target.value)}
+                      required
                     />
-                    {errors.birthDate && (
-                      <p className="text-sm text-destructive">此欄位為必填</p>
-                    )}
                   </div>
 
                   <Button

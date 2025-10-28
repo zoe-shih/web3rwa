@@ -4,6 +4,7 @@ import AssetStatus from "@/components/AssetStatus";
 import CustodyProcess from "@/pages/CustodyProcess";
 import NFTPreview from "@/components/NFTPreview";
 import NFTSuccess from "@/components/NFTSuccess";
+import Stepper from "@/components/Stepper";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Copy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
@@ -14,6 +15,18 @@ const Index = () => {
   
   const walletAddress = "0x0062...C466";
   const userName = "zoeshih";
+
+  const steps = ["資產代幣化", "審核中", "合約簽署", "託管程序", "生成 NFT"];
+  
+  // Map currentStep to stepper progress
+  const getStepperProgress = () => {
+    if (currentStep === 0) return 0;
+    if (currentStep === 1) return 1;
+    if (currentStep === 2) return 3;
+    if (currentStep === 3) return 3;
+    if (currentStep === 4) return 4;
+    return 0;
+  };
 
   const handleStepChange = (step: number) => {
     setCurrentStep(step);
@@ -58,6 +71,8 @@ const Index = () => {
           </div>
         </div>
       </header>
+
+      <Stepper steps={steps} currentStep={getStepperProgress()} />
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-5xl mx-auto">

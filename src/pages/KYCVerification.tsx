@@ -61,9 +61,9 @@ const KYCVerification = () => {
         description: "您的資料已送出審核，通常需要 1-2 個工作天",
       });
       
-      // 驗證成功後跳轉到主頁
+      // 驗證成功後跳轉到資產類型選擇頁面
       setTimeout(() => {
-        navigate("/");
+        navigate("/asset-tokenization");
       }, 1500);
     }, 2000);
   };

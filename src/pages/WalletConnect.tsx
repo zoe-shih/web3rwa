@@ -52,8 +52,18 @@ const WalletConnect = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <Card className="w-full max-w-2xl">
+    <div className="min-h-screen bg-background">
+      <header className="bg-card/50 backdrop-blur-sm sticky top-0 z-50 border-b">
+        <div className="container mx-auto px-4 py-4">
+          <Button variant="ghost" className="flex items-center gap-2">
+            <Wallet className="w-5 h-5" />
+            連接錢包
+          </Button>
+        </div>
+      </header>
+
+      <div className="flex items-center justify-center p-4 min-h-[calc(100vh-73px)]">
+        <Card className="w-full max-w-2xl">
         <CardHeader className="text-center space-y-4">
           <div className="mx-auto w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
             <Wallet className="w-8 h-8 text-primary" />
@@ -108,6 +118,7 @@ const WalletConnect = () => {
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 };

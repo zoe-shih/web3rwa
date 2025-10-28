@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import AssetSubmission from "@/components/AssetSubmission";
 import AssetStatus from "@/components/AssetStatus";
 import CustodyProcess from "@/pages/CustodyProcess";
@@ -6,12 +7,14 @@ import NFTPreview from "@/components/NFTPreview";
 import NFTSuccess from "@/components/NFTSuccess";
 import Stepper from "@/components/Stepper";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Copy } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Copy, Wallet } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const { toast } = useToast();
+  const navigate = useNavigate();
   
   const walletAddress = "0x0062...C466";
   const userName = "zoeshih";
@@ -68,6 +71,15 @@ const Index = () => {
                 </button>
               </div>
             </div>
+            <Button 
+              onClick={() => navigate("/my-assets")}
+              size="sm"
+              variant="outline"
+              className="flex items-center gap-2"
+            >
+              <Wallet className="w-4 h-4" />
+              我的資產
+            </Button>
           </div>
         </div>
       </header>

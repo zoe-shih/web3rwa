@@ -77,7 +77,7 @@ const Index = () => {
 
       <Stepper steps={steps} currentStep={getStepperProgress()} />
 
-      <main className="container mx-auto px-4 py-8 pb-24">
+      <main className="container mx-auto px-4 py-8">
         <div className="max-w-5xl mx-auto">
           {currentStep === 0 && (
             <AssetSubmission onSubmitSuccess={() => handleStepChange(1)} />

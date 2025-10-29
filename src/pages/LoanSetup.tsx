@@ -86,8 +86,8 @@ export default function LoanSetup() {
                 />
               </div>
               <div className="flex-1">
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="font-semibold text-lg">{mockAsset.name}</h3>
+                <div className="mb-2">
+                  <h3 className="font-semibold text-lg mb-2">{mockAsset.name}</h3>
                   <Badge>{mockAsset.type}</Badge>
                 </div>
                 <div className="space-y-1 text-sm">

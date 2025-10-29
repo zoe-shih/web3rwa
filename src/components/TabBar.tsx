@@ -14,9 +14,9 @@ const TabBar = () => {
     },
     {
       id: "assets",
-      label: "我的NFT",
+      label: "資產代幣化",
       icon: Briefcase,
-      path: "/my-assets",
+      path: "/asset-tokenization",
     },
     {
       id: "loans",

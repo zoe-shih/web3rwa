@@ -70,7 +70,7 @@ const WalletConnect = () => {
           </div>
           <CardTitle className="text-3xl">連接錢包</CardTitle>
           <CardDescription className="text-base">
-            請選擇您的數位錢包以開始資產代幣化流程
+            請連接您的數位錢包，並開始資產代幣化流程
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

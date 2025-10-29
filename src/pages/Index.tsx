@@ -7,9 +7,9 @@ import NFTPreview from "@/components/NFTPreview";
 import NFTSuccess from "@/components/NFTSuccess";
 import Stepper from "@/components/Stepper";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { Copy, Wallet } from "lucide-react";
+import { Copy } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import TabBar from "@/components/TabBar";
 
 const Index = () => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -71,32 +71,13 @@ const Index = () => {
                 </button>
               </div>
             </div>
-            <div className="flex gap-2">
-              <Button 
-                onClick={() => navigate("/my-loans")}
-                size="sm"
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                我的貸款
-              </Button>
-              <Button 
-                onClick={() => navigate("/my-assets")}
-                size="sm"
-                variant="outline"
-                className="flex items-center gap-2"
-              >
-                <Wallet className="w-4 h-4" />
-                我的資產
-              </Button>
-            </div>
           </div>
         </div>
       </header>
 
       <Stepper steps={steps} currentStep={getStepperProgress()} />
 
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 pb-24">
         <div className="max-w-5xl mx-auto">
           {currentStep === 0 && (
             <AssetSubmission onSubmitSuccess={() => handleStepChange(1)} />
@@ -114,12 +95,14 @@ const Index = () => {
         </div>
       </main>
 
-      <footer className="border-t mt-20">
+      <footer className="border-t mt-20 mb-20">
         <div className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
           <p>© 2025 RWA 資產代幣化平台. All rights reserved.</p>
           <p className="mt-2">Powered by Web3 Technology</p>
         </div>
       </footer>
+
+      <TabBar />
     </div>
   );
 };

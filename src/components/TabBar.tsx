@@ -14,7 +14,7 @@ const TabBar = () => {
     },
     {
       id: "assets",
-      label: "我的資產",
+      label: "我的NFT",
       icon: Briefcase,
       path: "/my-assets",
     },

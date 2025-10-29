@@ -1,8 +1,15 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Sparkles, ExternalLink, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function NFTSuccess() {
+  const navigate = useNavigate();
+
+  const handleStartLoan = () => {
+    navigate("/loan-setup/RWA-2025-001");
+  };
+
   return (
     <div className="space-y-8 max-w-2xl mx-auto text-center">
       <div className="relative">
@@ -84,7 +91,7 @@ export default function NFTSuccess() {
           <p className="text-sm text-muted-foreground">
             您現在可以使用這個 NFT 作為抵押品，在我們的平台上申請借款。根據您的資產估值，您最多可以借款 NT$ 4,480,000（LTV 70%）。
           </p>
-          <Button className="w-full" size="lg">
+          <Button className="w-full" size="lg" onClick={handleStartLoan}>
             開始借款
             <ArrowRight className="w-4 h-4 ml-2" />
           </Button>

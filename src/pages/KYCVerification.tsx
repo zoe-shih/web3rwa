@@ -91,30 +91,28 @@ const KYCVerification = () => {
       <div className="max-w-2xl mx-auto">
         {/* Progress Steps */}
         <div className="mb-8">
-          <div className="flex items-start justify-between max-w-xl mx-auto">
+          <div className="flex items-start justify-center gap-0">
             {steps.map((step, index) => (
-              <div key={step.number} className="flex flex-col items-center" style={{ width: index === steps.length - 1 ? 'auto' : '33.33%' }}>
-                <div className="flex items-center w-full">
-                  <div className="flex flex-col items-center">
-                    <div
-                      className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${
-                        currentStep >= step.number
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-muted-foreground"
-                      }`}
-                    >
-                      <step.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                    </div>
-                    <p className="text-xs sm:text-sm mt-2 font-medium text-center whitespace-nowrap">{step.title}</p>
+              <div key={step.number} className="flex items-center">
+                <div className="flex flex-col items-center">
+                  <div
+                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${
+                      currentStep >= step.number
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-muted text-muted-foreground"
+                    }`}
+                  >
+                    <step.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  {index < steps.length - 1 && (
-                    <div
-                      className={`h-1 flex-1 mx-2 sm:mx-4 ${
-                        currentStep > step.number ? "bg-primary" : "bg-muted"
-                      }`}
-                    />
-                  )}
+                  <p className="text-xs sm:text-sm mt-2 font-medium text-center whitespace-nowrap">{step.title}</p>
                 </div>
+                {index < steps.length - 1 && (
+                  <div
+                    className={`h-1 w-16 sm:w-24 mx-2 sm:mx-4 ${
+                      currentStep > step.number ? "bg-primary" : "bg-muted"
+                    }`}
+                  />
+                )}
               </div>
             ))}
           </div>

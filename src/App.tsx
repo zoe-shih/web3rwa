@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import WalletConnect from "./pages/WalletConnect";
+import Welcome from "./pages/Welcome";
 import KYCVerification from "./pages/KYCVerification";
 import MyAssets from "./pages/MyAssets";
 import LoanSetup from "./pages/LoanSetup";
@@ -24,6 +25,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<WalletConnect />} />
+          <Route path="/welcome" element={<Welcome />} />
           <Route path="/kyc-verification" element={<KYCVerification />} />
           <Route path="/asset-tokenization" element={<Index />} />
           <Route path="/my-assets" element={<MyAssets />} />

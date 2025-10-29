@@ -323,11 +323,11 @@ const KYCVerification = () => {
                     <h3 className="font-semibold text-lg">請確認您的資料</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">身份證件：</span>
+                        <span className="text-muted-foreground whitespace-nowrap">身份證件：</span>
                         <span className="font-medium text-right">{idDocument?.name}</span>
                       </div>
                       <div className="flex justify-between">
-                        <span className="text-muted-foreground">自拍照：</span>
+                        <span className="text-muted-foreground whitespace-nowrap">自拍照：</span>
                         <span className="font-medium text-right">{selfiePhoto?.name}</span>
                       </div>
                     </div>

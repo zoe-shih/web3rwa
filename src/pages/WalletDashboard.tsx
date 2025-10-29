@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   CheckCircle2, 
   Clock, 
@@ -202,31 +203,132 @@ const WalletDashboard = () => {
               <TrendingUp className="w-4 h-4" />
               <span className="text-sm">錢包總價值</span>
             </div>
-            <div className="text-3xl font-bold">
+            <div className="text-3xl font-bold text-primary">
               {formatCurrency(mockUserData.totalValue)}
             </div>
 
-            <Separator />
-
-            <div className="space-y-3">
-              <h3 className="text-sm font-medium text-muted-foreground">資產明細</h3>
-              {mockUserData.tokens.map((token) => (
-                <div key={token.symbol} className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="text-2xl">{token.logo}</div>
-                    <div>
-                      <p className="font-medium">{token.symbol}</p>
-                      <p className="text-sm text-muted-foreground">
-                        {token.balance.toLocaleString()}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="font-medium">{formatCurrency(token.value)}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </Card>
+
+        {/* Tabs for Tokens and NFTs */}
+        <Tabs defaultValue="tokens" className="w-full">
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="tokens">代幣</TabsTrigger>
+            <TabsTrigger value="nfts">我的 NFT</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="tokens" className="space-y-4 mt-4">
+            <Card className="p-6">
+              <h3 className="text-sm font-medium text-muted-foreground mb-4">資產明細</h3>
+              <div className="space-y-3">
+                {mockUserData.tokens.map((token) => (
+                  <div key={token.symbol} className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <div className="text-2xl">{token.logo}</div>
+                      <div>
+                        <p className="font-medium">{token.symbol}</p>
+                        <p className="text-sm text-muted-foreground">
+                          {token.balance.toLocaleString()}
+                        </p>
+                      </div>
+                    </div>
+                    <p className="font-medium">{formatCurrency(token.value)}</p>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </TabsContent>
+
+          <TabsContent value="nfts" className="space-y-4 mt-4">
+            {mockRWAAssets.map((asset) => {
+              const statusConfig = getAssetStatusConfig(asset.status);
+              
+              return (
+                <Card key={asset.id} className="overflow-hidden">
+                  <div className="p-4 space-y-4">
+                    <div className="flex items-start justify-between">
+                      <div className="flex gap-3">
+                        <img
+                          src={asset.image}
+                          alt={asset.name}
+                          className="w-16 h-16 rounded-lg object-cover"
+                        />
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <Badge variant="outline">{asset.type}</Badge>
+                            <span className={`text-xs font-medium ${statusConfig.color}`}>
+                              {statusConfig.label}
+                            </span>
+                          </div>
+                          <h3 className="font-medium mt-1">{asset.name}</h3>
+                          <p className="text-sm text-muted-foreground">
+                            估值：{formatCurrency(asset.estimatedValue)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {asset.status === "collateralized" && (
+                      <>
+                        <Separator />
+                        <div className="space-y-2">
+                          <h4 className="text-sm font-medium">抵押借貸資訊</h4>
+                          <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div>
+                              <p className="text-muted-foreground">借款金額</p>
+                              <p className="font-medium">{formatCurrency(asset.loanAmount!)}</p>
+                            </div>
+                            <div>
+                              <p className="text-muted-foreground">剩餘期限</p>
+                              <p className="font-medium">{asset.remainingDays} 天</p>
+                            </div>
+                            <div>
+                              <p className="text-muted-foreground">到期日</p>
+                              <p className="font-medium">{asset.dueDate}</p>
+                            </div>
+                          </div>
+                          <Button
+                            variant="default"
+                            size="sm"
+                            className="w-full mt-2"
+                            onClick={() => navigate("/my-loans")}
+                          >
+                            查看還款詳情
+                          </Button>
+                        </div>
+                      </>
+                    )}
+
+                    {asset.status === "free" && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="w-full"
+                        onClick={() => navigate(`/loan-setup/${asset.id}`)}
+                        disabled={mockUserData.kycStatus !== "verified"}
+                      >
+                        申請借款
+                      </Button>
+                    )}
+                  </div>
+                </Card>
+              );
+            })}
+
+            {mockRWAAssets.length === 0 && (
+              <Card className="p-8 text-center">
+                <p className="text-muted-foreground">尚無 RWA 資產</p>
+                <Button
+                  variant="default"
+                  className="mt-4"
+                  onClick={() => navigate("/asset-tokenization")}
+                >
+                  開始代幣化資產
+                </Button>
+              </Card>
+            )}
+          </TabsContent>
+        </Tabs>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-4 gap-3">
@@ -290,100 +392,6 @@ const WalletDashboard = () => {
             </div>
           </Card>
         )}
-
-        {/* RWA Assets Section */}
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold">我的現實世界資產 (RWA Assets)</h2>
-          
-          {mockRWAAssets.map((asset) => {
-            const statusConfig = getAssetStatusConfig(asset.status);
-            
-            return (
-              <Card key={asset.id} className="overflow-hidden">
-                <div className="p-4 space-y-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex gap-3">
-                      <img
-                        src={asset.image}
-                        alt={asset.name}
-                        className="w-16 h-16 rounded-lg object-cover"
-                      />
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <Badge variant="outline">{asset.type}</Badge>
-                          <span className={`text-xs font-medium ${statusConfig.color}`}>
-                            {statusConfig.label}
-                          </span>
-                        </div>
-                        <h3 className="font-medium mt-1">{asset.name}</h3>
-                        <p className="text-sm text-muted-foreground">
-                          估值：{formatCurrency(asset.estimatedValue)}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {asset.status === "collateralized" && (
-                    <>
-                      <Separator />
-                      <div className="space-y-2">
-                        <h4 className="text-sm font-medium">抵押借貸資訊</h4>
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                          <div>
-                            <p className="text-muted-foreground">借款金額</p>
-                            <p className="font-medium">{formatCurrency(asset.loanAmount!)}</p>
-                          </div>
-                          <div>
-                            <p className="text-muted-foreground">剩餘期限</p>
-                            <p className="font-medium">{asset.remainingDays} 天</p>
-                          </div>
-                          <div>
-                            <p className="text-muted-foreground">到期日</p>
-                            <p className="font-medium">{asset.dueDate}</p>
-                          </div>
-                        </div>
-                        <Button
-                          variant="default"
-                          size="sm"
-                          className="w-full mt-2"
-                          onClick={() => navigate("/my-loans")}
-                        >
-                          查看還款詳情
-                        </Button>
-                      </div>
-                    </>
-                  )}
-
-                  {asset.status === "free" && (
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => navigate(`/loan-setup/${asset.id}`)}
-                      disabled={mockUserData.kycStatus !== "verified"}
-                    >
-                      申請借款
-                    </Button>
-                  )}
-                </div>
-              </Card>
-            );
-          })}
-
-          {mockRWAAssets.length === 0 && (
-            <Card className="p-8 text-center">
-              <p className="text-muted-foreground">尚無 RWA 資產</p>
-              <Button
-                variant="default"
-                className="mt-4"
-                onClick={() => navigate("/asset-tokenization")}
-              >
-                開始代幣化資產
-              </Button>
-            </Card>
-          )}
-        </div>
-
       </div>
 
       {/* Receive Dialog */}

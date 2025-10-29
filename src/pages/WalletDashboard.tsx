@@ -384,42 +384,6 @@ const WalletDashboard = () => {
           )}
         </div>
 
-        {/* Transaction History */}
-        <div className="space-y-4">
-          <h2 className="text-lg font-semibold">交易歷史</h2>
-          
-          {mockTransactions.map((tx) => (
-            <Card key={tx.id} className="p-4">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    tx.type === "send" ? "bg-red-100 dark:bg-red-950" : "bg-green-100 dark:bg-green-950"
-                  }`}>
-                    {tx.type === "send" ? (
-                      <ArrowUpRight className="w-5 h-5 text-red-600 dark:text-red-400" />
-                    ) : (
-                      <ArrowDownLeft className="w-5 h-5 text-green-600 dark:text-green-400" />
-                    )}
-                  </div>
-                  <div>
-                    <p className="font-medium">
-                      {tx.type === "send" ? "發送" : "接收"} {tx.token}
-                    </p>
-                    <p className="text-sm text-muted-foreground">{tx.timestamp}</p>
-                  </div>
-                </div>
-                <div className="text-right">
-                  <p className={`font-medium ${
-                    tx.type === "send" ? "text-red-600" : "text-green-600"
-                  }`}>
-                    {tx.type === "send" ? "-" : "+"}{tx.amount} {tx.token}
-                  </p>
-                  <p className="text-xs text-muted-foreground">Gas: {tx.gasFee} MATIC</p>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
       </div>
 
       {/* Receive Dialog */}

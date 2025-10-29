@@ -206,7 +206,7 @@ const KYCVerification = () => {
                   <div className="space-y-4">
                     <Label>上傳身份證件</Label>
                     <Card className="border-dashed">
-                      <CardContent className="p-6">
+                      <CardContent className={idDocumentPreview ? "p-3" : "p-6"}>
                         <div className="flex flex-col items-center gap-4">
                           {idDocumentPreview ? (
                             <div className="w-full max-w-sm">
@@ -254,7 +254,7 @@ const KYCVerification = () => {
                   <div className="space-y-4">
                     <Label>上傳手持自拍照</Label>
                     <Card className="border-dashed">
-                      <CardContent className="p-6">
+                      <CardContent className={selfiePhotoPreview ? "p-3" : "p-6"}>
                         <div className="flex flex-col items-center gap-4">
                           {selfiePhotoPreview ? (
                             <div className="w-full max-w-sm">

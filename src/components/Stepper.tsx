@@ -7,7 +7,7 @@ interface StepperProps {
 
 export default function Stepper({ steps, currentStep }: StepperProps) {
   return (
-    <div className="w-full py-8 overflow-x-auto">
+    <div className="w-full py-8 overflow-x-auto scrollbar-hide">
       <div className="flex items-center max-w-3xl mx-auto px-4" style={{ minWidth: 'max-content' }}>
         {steps.map((step, index) => (
           <div key={index} className="flex items-center" style={{ minWidth: '140px' }}>

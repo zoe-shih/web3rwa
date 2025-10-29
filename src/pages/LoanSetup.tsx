@@ -77,15 +77,15 @@ export default function LoanSetup() {
         {/* 資產資訊 */}
         <Card className="mb-6">
           <CardContent className="p-6">
-            <div className="flex items-start gap-4">
-              <div className="w-24 h-24 rounded-lg overflow-hidden flex-shrink-0 bg-muted">
+            <div className="space-y-4">
+              <div className="w-full aspect-[16/9] rounded-lg overflow-hidden bg-muted">
                 <img
                   src={mockAsset.image}
                   alt={mockAsset.name}
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="flex-1">
+              <div>
                 <div className="mb-2">
                   <h3 className="font-semibold text-lg mb-2">{mockAsset.name}</h3>
                   <Badge>{mockAsset.type}</Badge>

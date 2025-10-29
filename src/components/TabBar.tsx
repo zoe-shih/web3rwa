@@ -20,7 +20,7 @@ const TabBar = () => {
     },
     {
       id: "loans",
-      label: "貸款",
+      label: "借貸中",
       icon: Banknote,
       path: "/my-loans",
     },

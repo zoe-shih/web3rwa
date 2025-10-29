@@ -163,32 +163,29 @@ const WalletDashboard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Avatar>
-                <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback>
-                  <Wallet className="w-5 h-5" />
+              <Avatar className="w-12 h-12 bg-lime-400">
+                <AvatarFallback className="bg-lime-400 text-black text-lg font-semibold">
+                  {mockUserData.identityName ? mockUserData.identityName[0] : 'W'}
                 </AvatarFallback>
               </Avatar>
               <div>
+                <p className="font-semibold text-base">
+                  {mockUserData.identityName || "User"}
+                </p>
                 <div className="flex items-center gap-2">
-                  <span className="text-sm font-medium">
+                  <span className="text-sm text-muted-foreground">
                     {mockUserData.walletAddress.slice(0, 6)}...
                     {mockUserData.walletAddress.slice(-4)}
                   </span>
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="h-6 w-6 p-0"
+                    className="h-5 w-5 p-0"
                     onClick={handleCopyAddress}
                   >
-                    <Copy className="w-3 h-3" />
+                    <Copy className="w-3.5 h-3.5 text-muted-foreground" />
                   </Button>
                 </div>
-                {mockUserData.kycStatus === "verified" && (
-                  <p className="text-xs text-muted-foreground">
-                    實體身份：{mockUserData.identityName} (ID: ****{mockUserData.identityIdLast4})
-                  </p>
-                )}
               </div>
             </div>
             {getKYCStatusBadge()}

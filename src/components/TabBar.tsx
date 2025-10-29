@@ -8,7 +8,7 @@ const TabBar = () => {
   const tabs = [
     {
       id: "wallet",
-      label: "首頁",
+      label: "錢包",
       icon: Wallet,
       path: "/asset-tokenization",
     },

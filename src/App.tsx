@@ -7,6 +7,7 @@ import Index from "./pages/Index";
 import WalletConnect from "./pages/WalletConnect";
 import Welcome from "./pages/Welcome";
 import KYCVerification from "./pages/KYCVerification";
+import WalletDashboard from "./pages/WalletDashboard";
 import MyAssets from "./pages/MyAssets";
 import LoanSetup from "./pages/LoanSetup";
 import LoanConfirm from "./pages/LoanConfirm";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/" element={<WalletConnect />} />
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/kyc-verification" element={<KYCVerification />} />
+          <Route path="/wallet-dashboard" element={<WalletDashboard />} />
           <Route path="/asset-tokenization" element={<Index />} />
           <Route path="/my-assets" element={<MyAssets />} />
           <Route path="/loan-setup/:assetId" element={<LoanSetup />} />

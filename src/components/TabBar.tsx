@@ -10,7 +10,7 @@ const TabBar = () => {
       id: "wallet",
       label: "錢包",
       icon: Wallet,
-      path: "/asset-tokenization",
+      path: "/wallet-dashboard",
     },
     {
       id: "assets",
@@ -27,6 +27,9 @@ const TabBar = () => {
   ];
 
   const isActive = (path: string) => {
+    if (path === "/wallet-dashboard") {
+      return location.pathname === "/wallet-dashboard";
+    }
     if (path === "/asset-tokenization") {
       return location.pathname === "/" || location.pathname === "/asset-tokenization";
     }

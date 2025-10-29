@@ -26,7 +26,7 @@ const Welcome = () => {
         <Button 
           onClick={handleConnectWallet}
           size="lg"
-          className="w-full max-w-xs h-14 text-lg font-semibold rounded-full bg-primary hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all"
+          className="w-full max-w-xs font-semibold rounded-full shadow-lg hover:shadow-xl transition-all"
         >
           連接錢包
         </Button>

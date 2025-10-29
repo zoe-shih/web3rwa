@@ -87,8 +87,8 @@ const KYCVerification = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background py-8 px-4">
-      <div className="container max-w-2xl mx-auto">
+    <div className="min-h-screen bg-background p-4">
+      <div className="max-w-2xl mx-auto">
         {/* Progress Steps */}
         <div className="mb-8">
           <div className="flex items-center justify-between">

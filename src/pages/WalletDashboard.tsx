@@ -32,8 +32,7 @@ const mockUserData = {
   totalValue: 125000, // TWD
   tokens: [
     { symbol: "USDT", balance: 3500, value: 105000, logo: "💵" },
-    { symbol: "USDC", balance: 500, value: 15000, logo: "💵" },
-    { symbol: "MATIC", balance: 25.5, value: 5000, logo: "⬢" }
+    { symbol: "USDC", balance: 500, value: 15000, logo: "💵" }
   ]
 };
 
@@ -254,7 +253,6 @@ const WalletDashboard = () => {
           
           <TabsContent value="tokens" className="space-y-4 mt-4">
             <Card className="p-6">
-              <h3 className="text-sm font-medium text-muted-foreground mb-4">資產明細</h3>
               <div className="space-y-3">
                 {mockUserData.tokens.map((token) => (
                   <div key={token.symbol} className="flex items-center justify-between">

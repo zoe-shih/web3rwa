@@ -180,18 +180,16 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </div>
       </Card>
 
-      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+      <div className="grid grid-cols-2 gap-3">
         <Button 
           variant="outline" 
-          size="lg"
-          className="flex-1"
+          size="default"
           onClick={() => window.history.back()}
         >
           返回
         </Button>
         <Button 
-          size="lg"
-          className="flex-1"
+          size="default"
           onClick={() => setShowContractDialog(true)}
         >
           接受

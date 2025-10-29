@@ -221,7 +221,7 @@ const KYCVerification = () => {
                           )}
                           <div className="text-center">
                             <p className="text-sm font-medium">
-                              {idDocument ? idDocument.name : "程式新手證書.png"}
+                              {idDocument ? idDocument.name : "點擊或拖曳上傳身份證件"}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1">
                               支援 JPG, PNG 格式，檔案大小不超過 10MB

@@ -75,15 +75,12 @@ export default function MyLoans() {
               return (
                 <Card key={loan.id} className="overflow-hidden">
                   <CardHeader className="bg-muted/30">
-                    <div className="flex items-start justify-between">
-                      <CardTitle className="flex items-center gap-2">
-                        進行中的借貸
-                        <Badge variant={isUrgent ? "destructive" : "default"}>
-                          {loan.status === "active" ? "進行中" : "已完成"}
-                        </Badge>
-                      </CardTitle>
-                      <Button size="sm">提前還款</Button>
-                    </div>
+                    <CardTitle className="flex items-center gap-2">
+                      進行中的借貸
+                      <Badge variant={isUrgent ? "destructive" : "default"}>
+                        {loan.status === "active" ? "進行中" : "已完成"}
+                      </Badge>
+                    </CardTitle>
                   </CardHeader>
                   <CardContent className="pt-6">
                     {/* 抵押資產 */}
@@ -163,7 +160,7 @@ export default function MyLoans() {
                     </div>
 
                     {/* 詳細資訊 */}
-                    <div className="bg-muted/30 rounded-lg p-4 space-y-2 text-sm">
+                    <div className="bg-muted/30 rounded-lg p-4 space-y-2 text-sm mb-4">
                       <div className="flex justify-between">
                         <span className="text-muted-foreground">實際到帳金額</span>
                         <span className="font-semibold">
@@ -183,6 +180,9 @@ export default function MyLoans() {
                         </span>
                       </div>
                     </div>
+
+                    {/* 提前還款按鈕 */}
+                    <Button size="lg" className="w-full">提前還款</Button>
                   </CardContent>
                 </Card>
               );

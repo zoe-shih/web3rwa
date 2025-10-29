@@ -86,11 +86,10 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
               ) : (
                 <Gem className="w-8 h-8 text-primary" />
               )}
-              <Badge variant="secondary">步驟 4</Badge>
             </div>
             <CardTitle className="text-3xl">下一步：完成實體資產託管程序</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
+          <CardContent className="space-y-4">
             <div className="bg-muted/50 p-6 rounded-lg">
               <h3 className="font-semibold text-lg mb-3">
                 {assetType === "real-estate" ? "房地產抵押權設定" : "貴重物品實體移交"}
@@ -120,7 +119,7 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
               size="lg"
               className="w-full"
             >
-              開始辦理
+              開始託管
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </CardContent>

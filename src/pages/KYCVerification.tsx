@@ -13,6 +13,8 @@ const KYCVerification = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [idDocument, setIdDocument] = useState<File | null>(null);
   const [selfiePhoto, setSelfiePhoto] = useState<File | null>(null);
+  const [idDocumentPreview, setIdDocumentPreview] = useState<string | null>(null);
+  const [selfiePhotoPreview, setSelfiePhotoPreview] = useState<string | null>(null);
   const [fullName, setFullName] = useState("");
   const [idType, setIdType] = useState("");
   const [idNumber, setIdNumber] = useState("");
@@ -21,14 +23,17 @@ const KYCVerification = () => {
   const { toast } = useToast();
 
   const handleFileUpload = (type: "id" | "selfie", file: File) => {
+    const previewUrl = URL.createObjectURL(file);
     if (type === "id") {
       setIdDocument(file);
+      setIdDocumentPreview(previewUrl);
       toast({
         title: "文件已上傳",
         description: "身份證件已成功上傳",
       });
     } else {
       setSelfiePhoto(file);
+      setSelfiePhotoPreview(previewUrl);
       toast({
         title: "照片已上傳",
         description: "自拍照已成功上傳",
@@ -204,10 +209,20 @@ const KYCVerification = () => {
                     <Card className="border-dashed">
                       <CardContent className="p-6">
                         <div className="flex flex-col items-center gap-4">
-                          <Upload className="w-12 h-12 text-muted-foreground" />
+                          {idDocumentPreview ? (
+                            <div className="w-full max-w-sm">
+                              <img 
+                                src={idDocumentPreview} 
+                                alt="身份證件預覽" 
+                                className="w-full h-auto rounded-lg object-cover"
+                              />
+                            </div>
+                          ) : (
+                            <Upload className="w-12 h-12 text-muted-foreground" />
+                          )}
                           <div className="text-center">
                             <p className="text-sm font-medium">
-                              {idDocument ? idDocument.name : "點擊或拖曳上傳證件照片"}
+                              {idDocument ? idDocument.name : "程式新手證書.png"}
                             </p>
                             <p className="text-xs text-muted-foreground mt-1">
                               支援 JPG, PNG 格式，檔案大小不超過 10MB
@@ -240,7 +255,17 @@ const KYCVerification = () => {
                     <Card className="border-dashed">
                       <CardContent className="p-6">
                         <div className="flex flex-col items-center gap-4">
-                          <Camera className="w-12 h-12 text-muted-foreground" />
+                          {selfiePhotoPreview ? (
+                            <div className="w-full max-w-sm">
+                              <img 
+                                src={selfiePhotoPreview} 
+                                alt="自拍照預覽" 
+                                className="w-full h-auto rounded-lg object-cover"
+                              />
+                            </div>
+                          ) : (
+                            <Camera className="w-12 h-12 text-muted-foreground" />
+                          )}
                           <div className="text-center">
                             <p className="text-sm font-medium">
                               {selfiePhoto ? selfiePhoto.name : "點擊或拖曳上傳自拍照"}

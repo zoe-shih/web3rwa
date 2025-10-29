@@ -77,8 +77,9 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
   // 引導首頁
   if (stage === "intro") {
     return (
-      <div className="flex items-start justify-center p-4 pt-8">
-        <Card className="max-w-2xl w-full">
+      <div className="min-h-screen bg-background p-4">
+        <div className="max-w-2xl mx-auto">
+          <Card className="w-full">
           <CardHeader>
             <div className="flex items-center gap-3 mb-2">
               {assetType === "real-estate" ? (
@@ -125,14 +126,16 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
           </CardContent>
         </Card>
       </div>
-    );
+    </div>
+  );
   }
 
   // 方式選擇（僅貴重物品）
   if (stage === "method-selection") {
     return (
-      <div className="flex items-start justify-center p-4 pt-8">
-        <Card className="max-w-3xl w-full">
+      <div className="min-h-screen bg-background p-4">
+        <div className="max-w-3xl mx-auto">
+          <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-2xl">選擇您偏好的移交方式</CardTitle>
           </CardHeader>
@@ -187,7 +190,8 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
           </CardContent>
         </Card>
       </div>
-    );
+    </div>
+  );
   }
 
   // 進度追蹤
@@ -196,8 +200,9 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
     const StatusIcon = statusInfo.icon;
 
     return (
-      <div className="flex items-start justify-center p-4 pt-8">
-        <Card className="max-w-2xl w-full">
+      <div className="min-h-screen bg-background p-4">
+        <div className="max-w-2xl mx-auto">
+          <Card className="w-full">
           <CardHeader>
             <CardTitle className="text-2xl">託管進度追蹤</CardTitle>
           </CardHeader>
@@ -269,14 +274,16 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
           </CardContent>
         </Card>
       </div>
-    );
+    </div>
+  );
   }
 
   // 託管完成
   if (stage === "complete") {
     return (
-      <div className="flex items-start justify-center p-4 pt-8">
-        <Card className="max-w-2xl w-full">
+      <div className="min-h-screen bg-background p-4">
+        <div className="max-w-2xl mx-auto">
+          <Card className="w-full">
           <CardHeader>
             <div className="flex items-center justify-center mb-4">
               <div className="w-20 h-20 rounded-full bg-green-500/10 flex items-center justify-center">
@@ -309,7 +316,8 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
           </CardContent>
         </Card>
       </div>
-    );
+    </div>
+  );
   }
 
   return null;

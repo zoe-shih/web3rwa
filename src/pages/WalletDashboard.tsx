@@ -143,7 +143,7 @@ const WalletDashboard = () => {
       style: 'currency',
       currency: 'TWD',
       minimumFractionDigits: 0
-    }).format(amount);
+    }).format(amount).replace('TWD', 'NT$').replace(/\s/g, '');
   };
 
   const getAssetStatusConfig = (status: string) => {
@@ -197,18 +197,15 @@ const WalletDashboard = () => {
 
       <div className="container mx-auto px-4 py-6 space-y-6">
         {/* Portfolio Overview */}
-        <Card className="p-6">
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <TrendingUp className="w-4 h-4" />
-              <span className="text-sm">錢包總價值</span>
-            </div>
-            <div className="text-3xl font-bold text-primary">
-              {formatCurrency(mockUserData.totalValue)}
-            </div>
-
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 text-muted-foreground">
+            <TrendingUp className="w-4 h-4" />
+            <span className="text-sm">錢包總價值</span>
           </div>
-        </Card>
+          <div className="text-4xl font-bold text-primary">
+            {formatCurrency(mockUserData.totalValue)}
+          </div>
+        </div>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-4 gap-3">

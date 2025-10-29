@@ -77,7 +77,7 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
   // 引導首頁
   if (stage === "intro") {
     return (
-      <div className="min-h-screen flex items-start justify-center p-4 pt-8">
+      <div className="flex items-start justify-center p-4 pt-8">
         <Card className="max-w-2xl w-full">
           <CardHeader>
             <div className="flex items-center gap-3 mb-2">
@@ -131,7 +131,7 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
   // 方式選擇（僅貴重物品）
   if (stage === "method-selection") {
     return (
-      <div className="min-h-screen flex items-start justify-center p-4 pt-8">
+      <div className="flex items-start justify-center p-4 pt-8">
         <Card className="max-w-3xl w-full">
           <CardHeader>
             <CardTitle className="text-2xl">選擇您偏好的移交方式</CardTitle>
@@ -196,7 +196,7 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
     const StatusIcon = statusInfo.icon;
 
     return (
-      <div className="min-h-screen flex items-start justify-center p-4 pt-8">
+      <div className="flex items-start justify-center p-4 pt-8">
         <Card className="max-w-2xl w-full">
           <CardHeader>
             <CardTitle className="text-2xl">託管進度追蹤</CardTitle>
@@ -275,7 +275,7 @@ const CustodyProcess = ({ onComplete }: CustodyProcessProps) => {
   // 託管完成
   if (stage === "complete") {
     return (
-      <div className="min-h-screen flex items-start justify-center p-4 pt-8">
+      <div className="flex items-start justify-center p-4 pt-8">
         <Card className="max-w-2xl w-full">
           <CardHeader>
             <div className="flex items-center justify-center mb-4">

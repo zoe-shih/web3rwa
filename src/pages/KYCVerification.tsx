@@ -96,19 +96,19 @@ const KYCVerification = () => {
               <div key={step.number} className="flex items-center flex-1">
                 <div className="flex flex-col items-center flex-1">
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center ${
                       currentStep >= step.number
                         ? "bg-primary text-primary-foreground"
                         : "bg-muted text-muted-foreground"
                     }`}
                   >
-                    <step.icon className="w-6 h-6" />
+                    <step.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                   </div>
-                  <p className="text-sm mt-2 font-medium">{step.title}</p>
+                  <p className="text-xs sm:text-sm mt-2 font-medium text-center">{step.title}</p>
                 </div>
                 {index < steps.length - 1 && (
                   <div
-                    className={`h-1 flex-1 mx-4 ${
+                    className={`h-1 flex-1 mx-2 sm:mx-4 ${
                       currentStep > step.number ? "bg-primary" : "bg-muted"
                     }`}
                   />

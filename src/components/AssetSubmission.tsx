@@ -31,6 +31,7 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
   const [showDetails, setShowDetails] = useState(false);
   const [assetName, setAssetName] = useState("");
   const [assetDescription, setAssetDescription] = useState("");
+  const [assetAddress, setAssetAddress] = useState("");
   const [files, setFiles] = useState<File[]>([]);
   const { toast } = useToast();
 
@@ -69,10 +70,10 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
   };
 
   const handleSubmit = () => {
-    if (!selectedType || !assetName || !assetDescription || files.length === 0) {
+    if (!selectedType || !assetName || !assetDescription || !assetAddress || files.length === 0) {
       toast({
         title: "請填寫所有必填欄位",
-        description: "請選擇資產類型、填寫資產名稱和描述，並上傳至少一個文件",
+        description: "請選擇資產類型、填寫資產名稱、描述、地址，並上傳至少一個文件",
         variant: "destructive",
       });
       return;
@@ -131,6 +132,17 @@ export default function AssetSubmission({ onSubmitSuccess }: AssetSubmissionProp
                   value={assetDescription}
                   onChange={(e) => setAssetDescription(e.target.value)}
                   className="mt-2 min-h-32"
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="asset-address">資產地址 *</Label>
+                <Input
+                  id="asset-address"
+                  placeholder="請輸入資產地址"
+                  value={assetAddress}
+                  onChange={(e) => setAssetAddress(e.target.value)}
+                  className="mt-2"
                 />
               </div>
 

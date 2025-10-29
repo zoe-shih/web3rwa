@@ -82,7 +82,7 @@ const KYCVerification = () => {
 
   const steps = [
     { number: 1, title: "基本資料", icon: FileText },
-    { number: 2, title: "上傳文件", icon: Upload },
+    { number: 2, title: "上傳證件", icon: Upload },
     { number: 3, title: "完成驗證", icon: CheckCircle2 },
   ];
 
@@ -223,9 +223,11 @@ const KYCVerification = () => {
                             <p className="text-sm font-medium">
                               {idDocument ? idDocument.name : "點擊或拖曳上傳身份證件"}
                             </p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              支援 JPG, PNG 格式，檔案大小不超過 10MB
-                            </p>
+                            {!idDocument && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                支援 JPG, PNG 格式，檔案大小不超過 10MB
+                              </p>
+                            )}
                           </div>
                           <Input
                             type="file"
@@ -242,7 +244,7 @@ const KYCVerification = () => {
                             variant="outline"
                             onClick={() => document.getElementById("id-upload")?.click()}
                           >
-                            選擇文件
+                            {idDocument ? "變更文件" : "選擇文件"}
                           </Button>
                         </div>
                       </CardContent>
@@ -250,7 +252,7 @@ const KYCVerification = () => {
                   </div>
 
                   <div className="space-y-4">
-                    <Label>上傳手持證件自拍照</Label>
+                    <Label>上傳手持自拍照</Label>
                     <Card className="border-dashed">
                       <CardContent className="p-6">
                         <div className="flex flex-col items-center gap-4">
@@ -269,9 +271,11 @@ const KYCVerification = () => {
                             <p className="text-sm font-medium">
                               {selfiePhoto ? selfiePhoto.name : "點擊或拖曳上傳自拍照"}
                             </p>
-                            <p className="text-xs text-muted-foreground mt-1">
-                              請手持證件與臉部一起拍照
-                            </p>
+                            {!selfiePhoto && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                請手持證件與臉部一起拍照
+                              </p>
+                            )}
                           </div>
                           <Input
                             type="file"
@@ -288,7 +292,7 @@ const KYCVerification = () => {
                             variant="outline"
                             onClick={() => document.getElementById("selfie-upload")?.click()}
                           >
-                            選擇文件
+                            {selfiePhoto ? "變更文件" : "選擇文件"}
                           </Button>
                         </div>
                       </CardContent>

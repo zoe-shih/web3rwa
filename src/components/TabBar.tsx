@@ -38,7 +38,7 @@ const TabBar = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4">
-      <div className="bg-card border rounded-3xl shadow-lg mx-auto max-w-md">
+      <div className="bg-card border rounded-full shadow-lg mx-auto max-w-md">
         <div className="flex items-center justify-around">
           {tabs.map((tab) => {
             const Icon = tab.icon;

@@ -180,7 +180,7 @@ const KYCVerification = () => {
                         <Button
                           variant="outline"
                           className={cn(
-                            "w-full justify-between text-left font-normal",
+                            "w-full justify-between text-left font-normal hover:bg-accent hover:text-accent-foreground focus:bg-background focus:text-foreground focus-visible:ring-0 focus-visible:ring-offset-0",
                             !birthDate && "text-muted-foreground"
                           )}
                         >

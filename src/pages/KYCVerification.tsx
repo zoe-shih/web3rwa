@@ -320,7 +320,7 @@ const KYCVerification = () => {
               {/* Step 3: Review and Submit */}
               {currentStep === 3 && (
                 <div className="space-y-6">
-                  <div className="bg-muted p-6 rounded-lg space-y-4">
+                  <div className="bg-background border p-6 rounded-lg space-y-4">
                     <h3 className="font-semibold text-lg">請確認您的資料</h3>
                     <div className="space-y-2 text-sm">
                       <div className="flex justify-between">

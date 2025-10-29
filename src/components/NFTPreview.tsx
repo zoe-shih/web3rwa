@@ -64,7 +64,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         <p className="text-muted-foreground">確認您的資產 NFT 資訊</p>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-6 w-full overflow-hidden">\
+      <div className="grid lg:grid-cols-2 gap-6 w-full overflow-hidden">
         <Card className="p-4 sm:p-6 space-y-4 overflow-hidden">
           <div className="w-full aspect-square bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-xl flex items-center justify-center p-6">
             <div className="text-center space-y-4 w-full">

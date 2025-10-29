@@ -22,6 +22,8 @@ import {
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import TabBar from "@/components/TabBar";
+import usdtIcon from "@/assets/usdt-icon.svg";
+import usdcIcon from "@/assets/usdc-icon.png";
 
 // Mock data
 const mockUserData = {
@@ -31,8 +33,8 @@ const mockUserData = {
   identityIdLast4: "1234",
   totalValue: 125000, // TWD
   tokens: [
-    { symbol: "USDT", balance: 3500, value: 105000, logo: "💵" },
-    { symbol: "USDC", balance: 500, value: 15000, logo: "💵" }
+    { symbol: "USDT", balance: 3500, value: 105000, logo: usdtIcon },
+    { symbol: "USDC", balance: 500, value: 15000, logo: usdcIcon }
   ]
 };
 
@@ -257,7 +259,7 @@ const WalletDashboard = () => {
                 {mockUserData.tokens.map((token) => (
                   <div key={token.symbol} className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="text-2xl">{token.logo}</div>
+                      <img src={token.logo} alt={token.symbol} className="w-10 h-10" />
                       <div>
                         <p className="font-medium">{token.symbol}</p>
                         <p className="text-sm text-muted-foreground">

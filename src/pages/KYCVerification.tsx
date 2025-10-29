@@ -154,7 +154,6 @@ const KYCVerification = () => {
                       <SelectContent>
                         <SelectItem value="id">身份證</SelectItem>
                         <SelectItem value="passport">護照</SelectItem>
-                        <SelectItem value="driver">駕照</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>

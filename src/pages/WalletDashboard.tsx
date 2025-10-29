@@ -210,6 +210,44 @@ const WalletDashboard = () => {
           </div>
         </Card>
 
+        {/* Quick Actions */}
+        <div className="grid grid-cols-4 gap-3">
+          <Button
+            variant="outline"
+            className="flex flex-col items-center gap-2 h-auto py-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            onClick={() => handleQuickAction("send")}
+            disabled={mockUserData.kycStatus !== "verified"}
+          >
+            <ArrowUpRight className="w-5 h-5" />
+            <span className="text-xs">發送</span>
+          </Button>
+          <Button
+            variant="outline"
+            className="flex flex-col items-center gap-2 h-auto py-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            onClick={() => handleQuickAction("receive")}
+          >
+            <ArrowDownLeft className="w-5 h-5" />
+            <span className="text-xs">接收</span>
+          </Button>
+          <Button
+            variant="outline"
+            className="flex flex-col items-center gap-2 h-auto py-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            onClick={() => handleQuickAction("scan")}
+          >
+            <ScanLine className="w-5 h-5" />
+            <span className="text-xs">掃描</span>
+          </Button>
+          <Button
+            variant="outline"
+            className="flex flex-col items-center gap-2 h-auto py-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+            onClick={() => handleQuickAction("loan")}
+            disabled={mockUserData.kycStatus !== "verified"}
+          >
+            <Download className="w-5 h-5" />
+            <span className="text-xs">借款</span>
+          </Button>
+        </div>
+
         {/* Tabs for Tokens and NFTs */}
         <Tabs defaultValue="tokens" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
@@ -329,44 +367,6 @@ const WalletDashboard = () => {
             )}
           </TabsContent>
         </Tabs>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-4 gap-3">
-          <Button
-            variant="outline"
-            className="flex flex-col items-center gap-2 h-auto py-4"
-            onClick={() => handleQuickAction("send")}
-            disabled={mockUserData.kycStatus !== "verified"}
-          >
-            <ArrowUpRight className="w-5 h-5" />
-            <span className="text-xs">發送</span>
-          </Button>
-          <Button
-            variant="outline"
-            className="flex flex-col items-center gap-2 h-auto py-4"
-            onClick={() => handleQuickAction("receive")}
-          >
-            <ArrowDownLeft className="w-5 h-5" />
-            <span className="text-xs">接收</span>
-          </Button>
-          <Button
-            variant="outline"
-            className="flex flex-col items-center gap-2 h-auto py-4"
-            onClick={() => handleQuickAction("scan")}
-          >
-            <ScanLine className="w-5 h-5" />
-            <span className="text-xs">掃描</span>
-          </Button>
-          <Button
-            variant="outline"
-            className="flex flex-col items-center gap-2 h-auto py-4"
-            onClick={() => handleQuickAction("loan")}
-            disabled={mockUserData.kycStatus !== "verified"}
-          >
-            <Download className="w-5 h-5" />
-            <span className="text-xs">借款</span>
-          </Button>
-        </div>
 
         {/* KYC Warning */}
         {mockUserData.kycStatus !== "verified" && (

@@ -29,7 +29,7 @@ import usdcIcon from "@/assets/usdc-icon.png";
 const mockUserData = {
   walletAddress: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
   kycStatus: "verified", // "verified" | "pending" | "failed" | "none"
-  identityName: "王小明",
+  identityName: "Bob",
   identityIdLast4: "1234",
   totalValue: 125000, // TWD
   tokens: [

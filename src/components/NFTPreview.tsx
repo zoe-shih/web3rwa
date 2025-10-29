@@ -65,7 +65,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
       </div>
 
       <div className="grid lg:grid-cols-2 gap-6 w-full overflow-hidden">
-        <Card className="p-4 sm:p-6 space-y-4 overflow-hidden">
+        <Card className="p-6 space-y-4 overflow-hidden">
           <div className="w-full aspect-square bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-xl flex items-center justify-center p-6">
             <div className="text-center space-y-4 w-full">
               <div className="w-full max-w-[280px] mx-auto">
@@ -98,7 +98,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </Card>
 
         <div className="space-y-4">
-          <Card className="p-4 sm:p-6 overflow-hidden">
+          <Card className="p-6 overflow-hidden">
             <h3 className="font-semibold text-lg mb-4">資產詳細資訊</h3>
             
             <div className="space-y-4">
@@ -128,7 +128,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
             </div>
           </Card>
 
-          <Card className="p-4 sm:p-6 overflow-hidden">
+          <Card className="p-6 overflow-hidden">
             <h3 className="font-semibold text-lg mb-4">區塊鏈資訊</h3>
             
             <div className="space-y-4">
@@ -166,7 +166,7 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
         </div>
       </div>
 
-      <Card className="p-4 sm:p-6 bg-primary/5 border-primary/20 overflow-hidden">
+      <Card className="p-6 bg-primary/5 border-primary/20 overflow-hidden">
         <div className="flex gap-3 sm:gap-4">
           <div className="p-3 bg-primary/10 rounded-full h-fit flex-shrink-0">
             <FileText className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />

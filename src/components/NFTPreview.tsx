@@ -2,7 +2,6 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
-  Home,
   MapPin,
   Ruler,
   Calendar,
@@ -15,6 +14,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import ContractReviewDialog from "./ContractReviewDialog";
 import DigitalSignatureDialog from "./DigitalSignatureDialog";
+import buildingImage from "@/assets/building.png";
 
 interface NFTPreviewProps {
   onConfirm: () => void;
@@ -66,10 +66,14 @@ export default function NFTPreview({ onConfirm }: NFTPreviewProps) {
 
       <div className="grid lg:grid-cols-2 gap-6 w-full">
         <Card className="p-4 sm:p-6 space-y-4 overflow-hidden">
-          <div className="w-full aspect-square bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-xl flex items-center justify-center">
-            <div className="text-center space-y-4">
-              <div className="w-24 h-24 mx-auto bg-primary/10 rounded-full flex items-center justify-center">
-                <Home className="w-12 h-12 text-primary" />
+          <div className="w-full aspect-square bg-gradient-to-br from-primary/20 via-primary/10 to-transparent rounded-xl flex items-center justify-center p-6">
+            <div className="text-center space-y-4 w-full">
+              <div className="w-full max-w-[280px] mx-auto">
+                <img 
+                  src={buildingImage} 
+                  alt="Building" 
+                  className="w-full h-auto object-contain"
+                />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground mb-1">Token ID</p>

@@ -2,6 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
+import TabBar from "@/components/TabBar";
 import artImage from "@/assets/art-painting.png";
 import carImage from "@/assets/car-vehicle.png";
 import jewelryImage from "@/assets/jewelry-ring.png";
@@ -69,7 +70,7 @@ export default function MyAssets() {
       </header>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 pb-24">
         <div className="mb-6">
           <p className="text-muted-foreground">
             您共有 {userAssets.length} 個已代幣化的資產，可用於抵押借款
@@ -120,6 +121,8 @@ export default function MyAssets() {
           ))}
         </div>
       </div>
+
+      <TabBar />
     </div>
   );
 }

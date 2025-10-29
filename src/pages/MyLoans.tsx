@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { ArrowLeft, Clock, DollarSign, Calendar } from "lucide-react";
 import realEstateImage from "@/assets/real-estate-building.png";
+import TabBar from "@/components/TabBar";
 
 // 模擬貸款記錄
 const mockLoans = [
@@ -56,7 +57,7 @@ export default function MyLoans() {
       </header>
 
       {/* Content */}
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
+      <div className="container mx-auto px-4 py-8 pb-24 max-w-4xl">
         {mockLoans.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">
@@ -189,6 +190,8 @@ export default function MyLoans() {
           </div>
         )}
       </div>
+
+      <TabBar />
     </div>
   );
 }

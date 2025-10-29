@@ -37,9 +37,9 @@ const TabBar = () => {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-card border-t z-50">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-around max-w-md mx-auto">
+    <div className="fixed bottom-0 left-0 right-0 z-50 px-4 pb-4">
+      <div className="bg-card border rounded-3xl shadow-lg mx-auto max-w-md">
+        <div className="flex items-center justify-around">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const active = isActive(tab.path);

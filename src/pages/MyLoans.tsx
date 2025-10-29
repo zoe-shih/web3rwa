@@ -45,7 +45,7 @@ export default function MyLoans() {
   return (
     <div className="min-h-screen bg-background">
       {/* Content */}
-      <div className="container mx-auto px-4 py-8 pb-24 max-w-4xl">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
         {mockLoans.length === 0 ? (
           <Card>
             <CardContent className="py-12 text-center">

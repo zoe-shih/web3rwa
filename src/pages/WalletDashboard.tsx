@@ -209,16 +209,16 @@ const WalletDashboard = () => {
             onClick={() => handleQuickAction("send")}
             disabled={mockUserData.kycStatus !== "verified"}
           >
-            <ArrowUpRight className="w-6 h-6" />
-            <span className="text-sm">發送</span>
+            <ArrowUpRight className="w-8 h-8" />
+            <span className="text-base">發送</span>
           </Button>
           <Button
             variant="outline"
             className="flex flex-col items-center gap-2 h-auto py-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
             onClick={() => handleQuickAction("receive")}
           >
-            <ArrowDownLeft className="w-6 h-6" />
-            <span className="text-sm">接收</span>
+            <ArrowDownLeft className="w-8 h-8" />
+            <span className="text-base">接收</span>
           </Button>
           <Button
             variant="outline"
@@ -226,8 +226,8 @@ const WalletDashboard = () => {
             onClick={() => handleQuickAction("loan")}
             disabled={mockUserData.kycStatus !== "verified"}
           >
-            <Download className="w-6 h-6" />
-            <span className="text-sm">借款</span>
+            <Download className="w-8 h-8" />
+            <span className="text-base">借款</span>
           </Button>
         </div>
 

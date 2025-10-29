@@ -62,39 +62,21 @@ export default function NFTSuccess() {
         </div>
       </Card>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        <Card className="p-6 text-left hover:shadow-lg transition-shadow cursor-pointer group">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-primary/10 rounded-lg">
-              <ExternalLink className="w-6 h-6 text-primary" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                查看 NFT 詳情
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                在區塊鏈瀏覽器上查看您的 NFT
-              </p>
-            </div>
+      <Card className="p-6 text-left hover:shadow-lg transition-shadow cursor-pointer group max-w-md mx-auto">
+        <div className="flex items-start gap-4">
+          <div className="p-3 bg-primary/10 rounded-lg">
+            <ExternalLink className="w-6 h-6 text-primary" />
           </div>
-        </Card>
-
-        <Card className="p-6 text-left hover:shadow-lg transition-shadow cursor-pointer group">
-          <div className="flex items-start gap-4">
-            <div className="p-3 bg-primary/10 rounded-lg">
-              <ArrowRight className="w-6 h-6 text-primary" />
-            </div>
-            <div className="flex-1">
-              <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
-                前往借貸市場
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                使用 NFT 作為抵押品進行借款
-              </p>
-            </div>
+          <div className="flex-1">
+            <h3 className="font-semibold mb-1 group-hover:text-primary transition-colors">
+              查看 NFT 詳情
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              在區塊鏈瀏覽器上查看您的 NFT
+            </p>
           </div>
-        </Card>
-      </div>
+        </div>
+      </Card>
 
       <Card className="p-6 bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
         <div className="space-y-4">

@@ -198,7 +198,7 @@ export default function LoanConfirm() {
             onClick={handleConfirm}
           >
             <Lock className="w-4 h-4 mr-2" />
-            確認發起借款並簽署
+            確認借款並簽署
           </Button>
         </div>
       </div>

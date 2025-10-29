@@ -159,8 +159,8 @@ const WalletDashboard = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <Avatar className="w-12 h-12 bg-lime-400">
-                <AvatarFallback className="bg-lime-400 text-black text-lg font-semibold">
+              <Avatar className="w-12 h-12" style={{ backgroundColor: '#d4ff00' }}>
+                <AvatarFallback style={{ backgroundColor: '#d4ff00' }} className="text-black text-lg font-semibold">
                   {mockUserData.identityName ? mockUserData.identityName[0] : 'W'}
                 </AvatarFallback>
               </Avatar>

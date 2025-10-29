@@ -14,7 +14,6 @@ import {
   Copy, 
   Send, 
   Download, 
-  ScanLine, 
   Wallet,
   TrendingUp,
   ArrowUpRight,
@@ -130,9 +129,6 @@ const WalletDashboard = () => {
       case "receive":
         setShowReceiveDialog(true);
         break;
-      case "scan":
-        toast({ title: "掃描功能開發中" });
-        break;
       case "loan":
         navigate("/my-assets");
         break;
@@ -206,7 +202,7 @@ const WalletDashboard = () => {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-3 gap-3">
           <Button
             variant="outline"
             className="flex flex-col items-center gap-2 h-auto py-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
@@ -223,14 +219,6 @@ const WalletDashboard = () => {
           >
             <ArrowDownLeft className="w-6 h-6" />
             <span className="text-sm">接收</span>
-          </Button>
-          <Button
-            variant="outline"
-            className="flex flex-col items-center gap-2 h-auto py-4 border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-            onClick={() => handleQuickAction("scan")}
-          >
-            <ScanLine className="w-6 h-6" />
-            <span className="text-sm">掃描</span>
           </Button>
           <Button
             variant="outline"

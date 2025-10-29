@@ -12,16 +12,6 @@ export default function NFTSuccess() {
 
   return (
     <div className="space-y-8 max-w-2xl mx-auto text-center">
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-32 h-32 bg-success/20 rounded-full animate-ping" />
-        </div>
-        <div className="relative flex items-center justify-center">
-          <div className="w-24 h-24 bg-success rounded-full flex items-center justify-center">
-            <CheckCircle2 className="w-12 h-12 text-white" />
-          </div>
-        </div>
-      </div>
 
       <div className="space-y-3">
         <div className="flex items-center justify-center gap-2">

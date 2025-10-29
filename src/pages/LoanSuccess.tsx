@@ -103,11 +103,11 @@ export default function LoanSuccess() {
 
         {/* 操作按鈕 */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Button variant="outline" size="lg" onClick={() => navigate("/my-loans")}>
+          <Button size="lg" onClick={() => navigate("/my-loans")}>
             <FileText className="w-4 h-4 mr-2" />
             查看我的貸款
           </Button>
-          <Button size="lg" onClick={() => navigate("/")}>
+          <Button variant="secondary" size="lg" onClick={() => navigate("/")}>
             <Home className="w-4 h-4 mr-2" />
             返回首頁
           </Button>

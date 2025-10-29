@@ -39,7 +39,7 @@ export default function Stepper({ steps, currentStep }: StepperProps) {
             </div>
             {index < steps.length - 1 && (
               <div
-                className={`h-0.5 w-2 mx-0.5 transition-colors flex-shrink-0 ${
+                className={`h-0.5 w-4 mx-1 transition-colors flex-shrink-0 ${
                   index < currentStep ? "bg-primary" : "bg-border"
                 }`}
               />

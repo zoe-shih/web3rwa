@@ -198,7 +198,7 @@ const WalletDashboard = () => {
         <div className="space-y-2">
           <div className="flex items-center gap-2 text-muted-foreground">
             <TrendingUp className="w-4 h-4" />
-            <span className="text-sm">錢包總價值</span>
+            <span className="text-base">錢包總價值</span>
           </div>
           <div className="text-5xl font-bold text-primary">
             {formatCurrency(mockUserData.totalValue)}

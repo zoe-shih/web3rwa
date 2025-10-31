@@ -320,15 +320,26 @@ const WalletDashboard = () => {
                     )}
 
                     {asset.status === "free" && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="w-full"
-                        onClick={() => navigate(`/loan-setup/${asset.id}`)}
-                        disabled={mockUserData.kycStatus !== "verified"}
-                      >
-                        申請借款
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          className="flex-1"
+                          onClick={() => navigate(`/fractionalization/${asset.id}`, { state: { asset } })}
+                          disabled={mockUserData.kycStatus !== "verified"}
+                        >
+                          碎片化借款
+                        </Button>
+                        <Button
+                          variant="default"
+                          size="sm"
+                          className="flex-1"
+                          onClick={() => navigate(`/loan-setup/${asset.id}`)}
+                          disabled={mockUserData.kycStatus !== "verified"}
+                        >
+                          申請借款
+                        </Button>
+                      </div>
                     )}
                   </div>
                 </Card>

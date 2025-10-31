@@ -265,26 +265,41 @@ const WalletDashboard = () => {
               
               return (
                 <Card key={asset.id} className="overflow-hidden">
-                  <div className="p-4 space-y-4">
-                    <div className="flex items-start justify-between">
-                      <div className="flex gap-3">
-                        <img
-                          src={asset.image}
-                          alt={asset.name}
-                          className="w-16 h-16 rounded-lg object-cover"
-                        />
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <Badge variant="outline">{asset.type}</Badge>
-                            <span className={`text-xs font-medium ${statusConfig.color}`}>
-                              {statusConfig.label}
-                            </span>
-                          </div>
-                          <h3 className="font-medium mt-1">{asset.name}</h3>
-                          <p className="text-sm text-muted-foreground">
-                            估值：{formatCurrency(asset.estimatedValue)}
-                          </p>
-                        </div>
+                  {/* Large Asset Image */}
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={asset.image}
+                      alt={asset.name}
+                      className="w-full h-full object-cover"
+                    />
+                    <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
+                      {asset.type}
+                    </Badge>
+                  </div>
+
+                  <div className="p-4 space-y-3">
+                    <h3 className="font-semibold text-lg">{asset.name}</h3>
+                    
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">估值</span>
+                        <span className="font-semibold text-lg">
+                          {formatCurrency(asset.estimatedValue)}
+                        </span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Token ID</span>
+                        <span className="font-mono text-xs text-muted-foreground">
+                          0x1234...5678
+                        </span>
+                      </div>
+                      
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">狀態</span>
+                        <span className={`text-sm font-medium ${statusConfig.color}`}>
+                          {statusConfig.label}
+                        </span>
                       </div>
                     </div>
 
@@ -337,7 +352,7 @@ const WalletDashboard = () => {
                           onClick={() => navigate(`/loan-setup/${asset.id}`)}
                           disabled={mockUserData.kycStatus !== "verified"}
                         >
-                          申請借款
+                          開始借款
                         </Button>
                       </div>
                     )}

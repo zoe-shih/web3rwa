@@ -23,6 +23,7 @@ import { useToast } from "@/hooks/use-toast";
 import TabBar from "@/components/TabBar";
 import usdtIcon from "@/assets/usdt-icon.svg";
 import usdcIcon from "@/assets/usdc-icon.png";
+import taipeiBuilding from "@/assets/taipei-luxury-building.png";
 
 // Mock data
 const mockUserData = {
@@ -47,7 +48,7 @@ const mockRWAAssets = [
     loanAmount: 10000000,
     remainingDays: 180,
     dueDate: "2025-04-28",
-    image: "/placeholder.svg"
+    image: taipeiBuilding
   },
   {
     id: "nft-002",

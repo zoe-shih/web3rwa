@@ -81,7 +81,7 @@ export default function Fractionalization() {
                   <p className="text-sm text-muted-foreground">{asset.type}</p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4 mt-4">
+              <div className="space-y-3 mt-4">
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">資產總價值</p>
                   <p className="text-lg font-bold text-primary">

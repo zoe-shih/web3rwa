@@ -1,11 +1,19 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import ContractTermsDialog from "@/components/ContractTermsDialog";
 import genieIcon from "@/assets/genie-icon.png";
 
 const Welcome = () => {
   const navigate = useNavigate();
+  const [showContract, setShowContract] = useState(false);
 
   const handleConnectWallet = () => {
+    setShowContract(true);
+  };
+
+  const handleContractConfirm = () => {
+    setShowContract(false);
     navigate("/");
   };
 
@@ -36,6 +44,12 @@ const Welcome = () => {
           開始您的資產代幣化之旅
         </p>
       </div>
+
+      <ContractTermsDialog
+        open={showContract}
+        onOpenChange={setShowContract}
+        onConfirm={handleContractConfirm}
+      />
     </div>
   );
 };

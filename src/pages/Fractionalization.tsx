@@ -15,12 +15,14 @@ export default function Fractionalization() {
     id: assetId || "1",
     name: "台北市信義區豪宅",
     type: "房地產",
-    value: 6400000,
+    valuation: 6400000,
     image: "/placeholder.svg",
   };
 
+  const assetValue = asset.valuation || asset.value || 0;
+
   const maxLTVRatio = 0.8; // 最高可貸比例 80%
-  const maxFragmentValue = asset.value * maxLTVRatio;
+  const maxFragmentValue = assetValue * maxLTVRatio;
   const fragmentsPerMillion = 50; // 每 100 萬產生 50 個碎片
 
   const [fragmentValue, setFragmentValue] = useState(2000000); // 預設 200 萬
@@ -28,8 +30,8 @@ export default function Fractionalization() {
   // 計算碎片數量
   const fragmentCount = Math.floor((fragmentValue / 1000000) * fragmentsPerMillion);
   const valuePerFragment = fragmentCount > 0 ? fragmentValue / fragmentCount : 0;
-  const remainingValue = asset.value - fragmentValue;
-  const fragmentPercentage = (fragmentValue / asset.value) * 100;
+  const remainingValue = assetValue - fragmentValue;
+  const fragmentPercentage = (fragmentValue / assetValue) * 100;
 
   const handleContinue = () => {
     navigate("/fractionalization-processing", {
@@ -83,7 +85,7 @@ export default function Fractionalization() {
                 <div>
                   <p className="text-xs text-muted-foreground mb-1">資產總價值</p>
                   <p className="text-lg font-bold text-primary">
-                    ${asset.value.toLocaleString()}
+                    ${assetValue.toLocaleString()}
                   </p>
                 </div>
                 <div>
@@ -137,7 +139,7 @@ export default function Fractionalization() {
               <div className="space-y-1">
                 <p className="text-xs text-muted-foreground">資產總價值</p>
                 <p className="text-lg font-semibold">
-                  ${asset.value.toLocaleString()}
+                  ${assetValue.toLocaleString()}
                 </p>
               </div>
               
@@ -165,7 +167,7 @@ export default function Fractionalization() {
               <div className="space-y-1 col-span-2">
                 <p className="text-xs text-muted-foreground">剩餘未使用價值</p>
                 <p className="text-lg font-semibold">
-                  ${remainingValue.toLocaleString()} ({((remainingValue / asset.value) * 100).toFixed(1)}%)
+                  ${remainingValue.toLocaleString()} ({((remainingValue / assetValue) * 100).toFixed(1)}%)
                 </p>
               </div>
             </div>

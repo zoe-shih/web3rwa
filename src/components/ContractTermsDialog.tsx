@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -6,7 +6,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { toast } from "@/hooks/use-toast";
 
 interface ContractTermsDialogProps {
@@ -21,6 +20,7 @@ const ContractTermsDialog = ({
   onConfirm,
 }: ContractTermsDialogProps) => {
   const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) {
@@ -28,31 +28,20 @@ const ContractTermsDialog = ({
     }
   }, [open]);
 
-  const handleScroll = (event: Event) => {
-    const target = event.target as HTMLDivElement;
-    const isAtBottom =
-      Math.abs(target.scrollHeight - target.scrollTop - target.clientHeight) < 10;
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      const isAtBottom = Math.abs(scrollHeight - scrollTop - clientHeight) < 10;
 
-    if (isAtBottom && !hasScrolledToBottom) {
-      setHasScrolledToBottom(true);
-      toast({
-        title: "感謝您的閱讀",
-        description: "您現在可以確認已閱讀合約條款",
-      });
-    }
-  };
-
-  useEffect(() => {
-    if (open) {
-      const scrollViewport = document.querySelector('[data-radix-scroll-area-viewport]');
-      if (scrollViewport) {
-        scrollViewport.addEventListener('scroll', handleScroll);
-        return () => {
-          scrollViewport.removeEventListener('scroll', handleScroll);
-        };
+      if (isAtBottom && !hasScrolledToBottom) {
+        setHasScrolledToBottom(true);
+        toast({
+          title: "感謝您的閱讀",
+          description: "您現在可以確認已閱讀合約條款",
+        });
       }
     }
-  }, [open, hasScrolledToBottom]);
+  };
 
   const handleConfirm = () => {
     if (!hasScrolledToBottom) {
@@ -78,8 +67,12 @@ const ContractTermsDialog = ({
           </p>
         </DialogHeader>
 
-        <ScrollArea className="flex-1 px-6 h-[400px]">
-          <div className="space-y-6 pb-4">
+        <div 
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex-1 px-6 h-[400px] overflow-y-auto"
+        >
+          <div className="space-y-6 pb-4 pr-4">
             <section>
               <h3 className="text-lg font-bold mb-3">第一條：合約標的</h3>
               <p className="text-sm leading-relaxed text-muted-foreground">
@@ -185,7 +178,7 @@ const ContractTermsDialog = ({
               </p>
             </div>
           </div>
-        </ScrollArea>
+        </div>
 
         <div className="p-6 pt-4 space-y-3 border-t">
           <Button

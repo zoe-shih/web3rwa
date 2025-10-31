@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import {
   Dialog,
   DialogContent,
@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { X } from "lucide-react";
 import { toast } from "@/hooks/use-toast";
 
 interface ContractTermsDialogProps {
@@ -22,7 +21,6 @@ const ContractTermsDialog = ({
   onConfirm,
 }: ContractTermsDialogProps) => {
   const [hasScrolledToBottom, setHasScrolledToBottom] = useState(false);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!open) {
@@ -30,8 +28,8 @@ const ContractTermsDialog = ({
     }
   }, [open]);
 
-  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
-    const target = event.currentTarget;
+  const handleScroll = (event: Event) => {
+    const target = event.target as HTMLDivElement;
     const isAtBottom =
       Math.abs(target.scrollHeight - target.scrollTop - target.clientHeight) < 10;
 
@@ -43,6 +41,18 @@ const ContractTermsDialog = ({
       });
     }
   };
+
+  useEffect(() => {
+    if (open) {
+      const scrollViewport = document.querySelector('[data-radix-scroll-area-viewport]');
+      if (scrollViewport) {
+        scrollViewport.addEventListener('scroll', handleScroll);
+        return () => {
+          scrollViewport.removeEventListener('scroll', handleScroll);
+        };
+      }
+    }
+  }, [open, hasScrolledToBottom]);
 
   const handleConfirm = () => {
     if (!hasScrolledToBottom) {
@@ -60,31 +70,15 @@ const ContractTermsDialog = ({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] p-0">
         <DialogHeader className="p-6 pb-4">
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <DialogTitle className="text-2xl font-bold text-center mb-2">
-                資產代幣化合約條款
-              </DialogTitle>
-              <p className="text-sm text-muted-foreground text-center">
-                請仔細閱讀以下合約條款，滾動至底部以確認閱讀完成
-              </p>
-            </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="shrink-0 rounded-full"
-              onClick={() => onOpenChange(false)}
-            >
-              <X className="h-4 w-4" />
-            </Button>
-          </div>
+          <DialogTitle className="text-2xl font-bold text-center mb-2">
+            資產代幣化合約條款
+          </DialogTitle>
+          <p className="text-sm text-muted-foreground text-center">
+            請仔細閱讀以下合約條款，滾動至底部以確認閱讀完成
+          </p>
         </DialogHeader>
 
-        <ScrollArea
-          className="flex-1 px-6 h-[400px]"
-          onScroll={handleScroll}
-          ref={scrollAreaRef}
-        >
+        <ScrollArea className="flex-1 px-6 h-[400px]">
           <div className="space-y-6 pb-4">
             <section>
               <h3 className="text-lg font-bold mb-3">第十條：智慧財產權</h3>

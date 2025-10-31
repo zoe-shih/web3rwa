@@ -11,6 +11,13 @@ export default function FractionalizationSuccess() {
   const { asset, fragmentValue, fragmentCount, valuePerFragment, remainingValue } =
     location.state || {};
 
+  // 安全地獲取值，提供預設值
+  const safeFragmentValue = fragmentValue || 0;
+  const safeFragmentCount = fragmentCount || 0;
+  const safeValuePerFragment = valuePerFragment || 0;
+  const safeRemainingValue = remainingValue || 0;
+  const assetValue = asset ? (asset.valuation || asset.value || 0) : 0;
+
   useEffect(() => {
     if (!asset || !fragmentValue) {
       navigate("/my-assets");
@@ -32,7 +39,7 @@ export default function FractionalizationSuccess() {
             資產碎片化成功！
           </h1>
           <p className="text-lg text-muted-foreground animate-in fade-in slide-in-from-bottom-4 duration-700 delay-150">
-            您已成功獲得 {fragmentCount} 個資產碎片 (fNFT)
+            您已成功獲得 {safeFragmentCount} 個資產碎片 (fNFT)
           </p>
         </div>
 
@@ -51,7 +58,7 @@ export default function FractionalizationSuccess() {
             <div className="text-center px-4 py-2 bg-primary/10 rounded-lg">
               <Coins className="h-5 w-5 text-primary mx-auto mb-1" />
               <p className="text-xs text-muted-foreground">碎片數量</p>
-              <p className="text-xl font-bold text-primary">{fragmentCount}</p>
+              <p className="text-xl font-bold text-primary">{safeFragmentCount}</p>
             </div>
           </div>
 
@@ -60,28 +67,28 @@ export default function FractionalizationSuccess() {
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground">碎片化價值</p>
               <p className="text-lg font-semibold text-primary">
-                ${fragmentValue.toLocaleString()}
+                ${safeFragmentValue.toLocaleString()}
               </p>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground">每個碎片價值</p>
               <p className="text-lg font-semibold">
-                ${valuePerFragment.toLocaleString()}
+                ${safeValuePerFragment.toLocaleString()}
               </p>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground">資產總價值</p>
               <p className="text-lg font-semibold">
-                ${asset.value.toLocaleString()}
+                ${assetValue.toLocaleString()}
               </p>
             </div>
 
             <div className="space-y-1">
               <p className="text-xs text-muted-foreground">剩餘未使用價值</p>
               <p className="text-lg font-semibold">
-                ${remainingValue.toLocaleString()}
+                ${safeRemainingValue.toLocaleString()}
               </p>
             </div>
           </div>
@@ -110,9 +117,10 @@ export default function FractionalizationSuccess() {
                   asset: {
                     ...asset,
                     name: `${asset.name} (碎片化資產)`,
-                    value: fragmentValue,
+                    value: safeFragmentValue,
+                    valuation: safeFragmentValue,
                     type: "fNFT",
-                    fragmentCount,
+                    fragmentCount: safeFragmentCount,
                     isFragmented: true,
                   },
                 },

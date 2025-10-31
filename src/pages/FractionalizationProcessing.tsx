@@ -30,6 +30,11 @@ export default function FractionalizationProcessing() {
   const { asset, fragmentValue, fragmentCount, valuePerFragment, remainingValue } =
     location.state || {};
 
+  // 安全地獲取值，提供預設值
+  const safeFragmentValue = fragmentValue || 0;
+  const safeFragmentCount = fragmentCount || 0;
+  const safeValuePerFragment = valuePerFragment || 0;
+
   useEffect(() => {
     if (!asset || !fragmentValue) {
       navigate("/my-assets");
@@ -166,12 +171,12 @@ export default function FractionalizationProcessing() {
             <div className="flex-1 min-w-0">
               <p className="font-semibold truncate">{asset.name}</p>
               <p className="text-sm text-muted-foreground">
-                碎片化價值：${fragmentValue?.toLocaleString()}
+                碎片化價值：${safeFragmentValue.toLocaleString()}
               </p>
             </div>
             <div className="text-right">
               <p className="text-sm text-muted-foreground">獲得碎片</p>
-              <p className="font-bold text-primary">{fragmentCount} fNFT</p>
+              <p className="font-bold text-primary">{safeFragmentCount} fNFT</p>
             </div>
           </div>
         </Card>
@@ -183,8 +188,8 @@ export default function FractionalizationProcessing() {
           <DialogHeader>
             <DialogTitle>確認資產碎片化</DialogTitle>
             <DialogDescription>
-              您確定要將價值 ${fragmentValue?.toLocaleString()} 的資產轉換為{" "}
-              {fragmentCount} 個資產碎片嗎？
+              您確定要將價值 ${safeFragmentValue.toLocaleString()} 的資產轉換為{" "}
+              {safeFragmentCount} 個資產碎片嗎？
             </DialogDescription>
           </DialogHeader>
 
@@ -197,19 +202,19 @@ export default function FractionalizationProcessing() {
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">碎片化價值</span>
                 <span className="text-sm font-medium">
-                  ${fragmentValue?.toLocaleString()}
+                  ${safeFragmentValue.toLocaleString()}
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">碎片數量</span>
                 <span className="text-sm font-medium text-primary">
-                  {fragmentCount} fNFT
+                  {safeFragmentCount} fNFT
                 </span>
               </div>
               <div className="flex justify-between">
                 <span className="text-sm text-muted-foreground">每個碎片價值</span>
                 <span className="text-sm font-medium">
-                  ${valuePerFragment?.toLocaleString()}
+                  ${safeValuePerFragment.toLocaleString()}
                 </span>
               </div>
             </div>

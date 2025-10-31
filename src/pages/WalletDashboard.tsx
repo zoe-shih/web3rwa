@@ -265,40 +265,35 @@ const WalletDashboard = () => {
               
               return (
                 <Card key={asset.id} className="overflow-hidden">
-                  {/* Large Asset Image */}
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <img
-                      src={asset.image}
-                      alt={asset.name}
-                      className="w-full h-full object-cover"
-                    />
-                    <Badge className="absolute top-3 right-3 bg-primary text-primary-foreground">
-                      {asset.type}
-                    </Badge>
-                  </div>
-
                   <div className="p-4 space-y-3">
-                    <h3 className="font-semibold text-lg">{asset.name}</h3>
+                    {/* Horizontal Layout: Image, Name, Value */}
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                        <img
+                          src={asset.image}
+                          alt={asset.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <Badge variant="outline" className="text-xs">{asset.type}</Badge>
+                          <span className={`text-xs font-medium ${statusConfig.color}`}>
+                            {statusConfig.label}
+                          </span>
+                        </div>
+                        <h3 className="font-semibold text-base truncate">{asset.name}</h3>
+                        <p className="text-sm text-muted-foreground">
+                          估值：{formatCurrency(asset.estimatedValue)}
+                        </p>
+                      </div>
+                    </div>
                     
                     <div className="space-y-2">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">估值</span>
-                        <span className="font-semibold text-lg">
-                          {formatCurrency(asset.estimatedValue)}
-                        </span>
-                      </div>
-                      
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Token ID</span>
                         <span className="font-mono text-xs text-muted-foreground">
                           0x1234...5678
-                        </span>
-                      </div>
-                      
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-muted-foreground">狀態</span>
-                        <span className={`text-sm font-medium ${statusConfig.color}`}>
-                          {statusConfig.label}
                         </span>
                       </div>
                     </div>

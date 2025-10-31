@@ -14,6 +14,9 @@ import LoanConfirm from "./pages/LoanConfirm";
 import LoanProcessing from "./pages/LoanProcessing";
 import LoanSuccess from "./pages/LoanSuccess";
 import MyLoans from "./pages/MyLoans";
+import Fractionalization from "./pages/Fractionalization";
+import FractionalizationProcessing from "./pages/FractionalizationProcessing";
+import FractionalizationSuccess from "./pages/FractionalizationSuccess";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +39,9 @@ const App = () => (
           <Route path="/loan-processing" element={<LoanProcessing />} />
           <Route path="/loan-success" element={<LoanSuccess />} />
           <Route path="/my-loans" element={<MyLoans />} />
+          <Route path="/fractionalization/:assetId" element={<Fractionalization />} />
+          <Route path="/fractionalization-processing" element={<FractionalizationProcessing />} />
+          <Route path="/fractionalization-success" element={<FractionalizationSuccess />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

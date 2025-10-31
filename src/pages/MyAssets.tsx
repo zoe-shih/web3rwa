@@ -55,6 +55,10 @@ export default function MyAssets() {
     navigate(`/loan-setup/${assetId}`);
   };
 
+  const handleFragmentalize = (asset: typeof userAssets[0]) => {
+    navigate(`/fractionalization/${asset.id}`, { state: { asset } });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -105,12 +109,21 @@ export default function MyAssets() {
                     </Badge>
                   </div>
                 </div>
-                <Button
-                  className="w-full"
-                  onClick={() => handleStartLoan(asset.id)}
-                >
-                  開始借款
-                </Button>
+                <div className="flex gap-2">
+                  <Button
+                    className="flex-1"
+                    variant="outline"
+                    onClick={() => handleFragmentalize(asset)}
+                  >
+                    碎片化借款
+                  </Button>
+                  <Button
+                    className="flex-1"
+                    onClick={() => handleStartLoan(asset.id)}
+                  >
+                    開始借款
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}

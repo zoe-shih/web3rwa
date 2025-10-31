@@ -131,7 +131,7 @@ export default function Fractionalization() {
 
           {/* Preview */}
           <div className="bg-muted/50 rounded-lg p-6 space-y-4">
-            <h4 className="font-semibold text-sm text-muted-foreground mb-4">
+            <h4 className="font-semibold text-base text-muted-foreground mb-4">
               碎片化方案預覽
             </h4>
             

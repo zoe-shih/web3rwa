@@ -45,7 +45,7 @@ export default function FractionalizationSuccess() {
 
         {/* Main Info Card */}
         <Card className="p-6 mb-6 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300">
-          <div className="flex items-center gap-4 mb-6 pb-6 border-b">
+          <div className="flex items-start gap-4 mb-6 pb-6 border-b">
             <img
               src={asset.image}
               alt={asset.name}
@@ -53,12 +53,20 @@ export default function FractionalizationSuccess() {
             />
             <div className="flex-1">
               <h3 className="font-semibold text-lg mb-1">{asset.name}</h3>
-              <p className="text-sm text-muted-foreground">{asset.type}</p>
-            </div>
-            <div className="text-center px-4 py-2 bg-primary/10 rounded-lg">
-              <Coins className="h-5 w-5 text-primary mx-auto mb-1" />
-              <p className="text-xs text-muted-foreground">碎片數量</p>
-              <p className="text-xl font-bold text-primary">{safeFragmentCount}</p>
+              <p className="text-sm text-muted-foreground mb-3">{asset.type}</p>
+              
+              <div className="space-y-2">
+                <div>
+                  <p className="text-xs text-muted-foreground">碎片化價值：</p>
+                  <p className="text-lg font-semibold text-primary">
+                    ${safeFragmentValue.toLocaleString()}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground">獲得碎片</p>
+                  <p className="text-xl font-bold text-primary">{safeFragmentCount} fNFT</p>
+                </div>
+              </div>
             </div>
           </div>
 

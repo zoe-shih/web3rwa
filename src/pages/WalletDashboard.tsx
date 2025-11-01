@@ -53,7 +53,7 @@ const mockRWAAssets = [
   {
     id: "nft-002",
     type: "藝術品",
-    name: "當代藝術畫作",
+    name: "10克拉鑽戒",
     estimatedValue: 2000000,
     status: "free",
     image: "/placeholder.svg"

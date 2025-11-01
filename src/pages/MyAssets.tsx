@@ -22,7 +22,7 @@ const userAssets = [
   },
   {
     id: "nft-002",
-    name: "勞力士限量版腕錶",
+    name: "10克拉鑽戒",
     type: "jewelry",
     image: jewelryImage,
     valuation: 800000,

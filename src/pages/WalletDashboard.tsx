@@ -24,6 +24,7 @@ import TabBar from "@/components/TabBar";
 import usdtIcon from "@/assets/usdt-icon.svg";
 import usdcIcon from "@/assets/usdc-icon.png";
 import taipeiBuilding from "@/assets/taipei-luxury-building.png";
+import jewelryRing from "@/assets/jewelry-ring.png";
 
 // Mock data
 const mockUserData = {
@@ -52,11 +53,11 @@ const mockRWAAssets = [
   },
   {
     id: "nft-002",
-    type: "藝術品",
+    type: "珠寶",
     name: "10克拉鑽戒",
     estimatedValue: 2000000,
     status: "free",
-    image: "/placeholder.svg"
+    image: jewelryRing
   }
 ];
 

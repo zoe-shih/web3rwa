@@ -31,7 +31,7 @@ const userAssets = [
   },
   {
     id: "nft-003",
-    name: "保時捷 911 GT3",
+    name: "百萬賓士車",
     type: "vehicle",
     image: carImage,
     valuation: 6500000,

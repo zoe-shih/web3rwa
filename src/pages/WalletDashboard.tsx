@@ -42,7 +42,7 @@ const mockRWAAssets = [
   {
     id: "nft-001",
     type: "不動產",
-    name: "台北市信義區豪宅",
+    name: "10克拉鑽戒",
     estimatedValue: 15000000,
     status: "collateralized", // "free" | "collateralized" | "defaulted"
     loanAmount: 10000000,
